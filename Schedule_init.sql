@@ -1,3 +1,4 @@
+CREATE DATABASE schedule
     WITH
     OWNER = postgres
     ENCODING = 'UTF8'
