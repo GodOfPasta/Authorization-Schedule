@@ -1,3 +1,14 @@
+/*DB Creating*/
+CREATE DATABASE schedule
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Russian_Russia.1251'
+    LC_CTYPE = 'Russian_Russia.1251'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
 /*schedule_user sequence creating*/
 CREATE SEQUENCE Schedule_User_id_seq START WITH 1;
 
