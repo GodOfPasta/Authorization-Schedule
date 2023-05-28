@@ -24,7 +24,7 @@ ALTER SEQUENCE public."Schedule_User_id_seq"
 /*schedule_user table creating*/
 CREATE TABLE IF NOT EXISTS public.schedule_user
 (
-    id bigint NOT NULL DEFAULT 'nextval('"Schedule_User_id_seq"'::regclass)',
+    id bigint NOT NULL DEFAULT 'nextval(Schedule_User_id_seq::regclass)',
     login character varying COLLATE pg_catalog."default" NOT NULL,
     password character varying COLLATE pg_catalog."default" NOT NULL,
     role character varying COLLATE pg_catalog."default" NOT NULL,
