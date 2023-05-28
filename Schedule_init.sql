@@ -1,30 +1,10 @@
-/*DB Creating*/
-CREATE DATABASE schedule
-    WITH
-    OWNER = postgres
-    ENCODING = 'UTF8'
-    LC_COLLATE = 'Russian_Russia.1251'
-    LC_CTYPE = 'Russian_Russia.1251'
-    TABLESPACE = pg_default
-    CONNECTION LIMIT = -1
-    IS_TEMPLATE = False;
-
-/*user_sequence creating */
-CREATE SEQUENCE IF NOT EXISTS public."Schedule_User_id_seq"
-    INCREMENT 1
-    START 1
-    MINVALUE 1
-    MAXVALUE 9223372036854775807
-    CACHE 1
-    OWNED BY schedule_user.id;
-
-ALTER SEQUENCE public."Schedule_User_id_seq"
-    OWNER TO postgres;
+/*schedule_user sequence creating*/
+CREATE SEQUENCE Schedule_User_id_seq START WITH 1;
 
 /*schedule_user table creating*/
 CREATE TABLE IF NOT EXISTS public.schedule_user
 (
-    id bigint NOT NULL DEFAULT 'nextval(Schedule_User_id_seq::regclass)',
+    id bigint NOT NULL DEFAULT nextval('Schedule_User_id_seq'),
     login character varying COLLATE pg_catalog."default" NOT NULL,
     password character varying COLLATE pg_catalog."default" NOT NULL,
     role character varying COLLATE pg_catalog."default" NOT NULL,
@@ -49,6 +29,23 @@ INSERT INTO public.schedule_user (login, password, role) VALUES ('SergeyKrivel',
 INSERT INTO public.schedule_user (login, password, role) VALUES ('OlegKuzmin', 'gt6s64um', 'teacher');
 INSERT INTO public.schedule_user (login, password, role) VALUES ('FedorovRoman', '4uawr0wl', 'teacher');
 INSERT INTO public.schedule_user (login, password, role) VALUES ('admin', 'dQw4w9WgXcQ', 'admin');
+
+/*student_group table creating*/
+CREATE TABLE IF NOT EXISTS public.student_group
+(
+    id bigint NOT NULL,
+    name character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "Student_Group_pkey" PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.student_group
+    OWNER to postgres;
+
+/*student_group table filling*/
+INSERT INTO public.student_group(id, name) VALUES (12321, '2321-ДБ');
+INSERT INTO public.student_group(id, name) VALUES (22121, '2121-ДМ');
 
 /*student table creating*/
 CREATE TABLE IF NOT EXISTS public.student
@@ -82,23 +79,6 @@ INSERT INTO public.student(student_id, name, student_group) VALUES (4, 'Окру
 INSERT INTO public.student(student_id, name, student_group) VALUES (5, 'Бесов Василий Ильич', 22121);
 INSERT INTO public.student(student_id, name, student_group) VALUES (6, 'Прядко Дмитро Алексеевич', 22121);
 INSERT INTO public.student(student_id, name, student_group) VALUES (7, 'Крипок Фил Владиславович', 22121);
-
-/*student_group table creating*/
-CREATE TABLE IF NOT EXISTS public.student_group
-(
-    id bigint NOT NULL,
-    name character varying COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT "Student_Group_pkey" PRIMARY KEY (id)
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.student_group
-    OWNER to postgres;
-
-/*student_group table filling*/
-INSERT INTO public.student_group(id, name) VALUES (12321, '2321-ДБ');
-INSERT INTO public.student_group(id, name) VALUES (22121, '2121-ДМ');
 
 /*teacher table creating*/
 CREATE TABLE IF NOT EXISTS public.teacher
