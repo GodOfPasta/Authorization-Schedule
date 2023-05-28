@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:font-family="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+<title>Расписание</title>
+  <style>
+    body {
+      background-image: url("https://i.gifer.com/BUhB.gif");
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      overflow-y: scroll;
+      margin: 0;
+    }
+
+    .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.75);
+        }
+    .table-container {
+        margin: 5%;
+        display: flex;
+        width: 90%;
+        height: 60%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.25);
+    }
+
+    table {
+      font-family: 'Comic Sans MS';
+      color:#ffffff;
+      width: 100%; /* Изменили ширину таблицы на 100% */
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px;
+      width: 10%;
+      text-align: center;
+    }
+
+    th:first-child, td:first-child {
+      background-color: #333;
+      color: #fff;
+    }
+    th:first-child, td:first-child {
+      background-color: #333;
+      color: #fff;
+    }
+
+    td:hover {
+      background-color: indianred;
+      color: #000;
+    }
+    .student-name {
+        margin: 20px ;
+        text-align: left;
+        color: #ffffff;
+        font-size: xx-large;
+    }
+    .form {
+      display: flex;
+      justify-content: space-between;
+      text-align: left;
+      height: 20%;
+      color:#ffffff;
+      background-color: rgba(0, 0, 0, 0.85);
+      font-family: 'Comic Sans MS';
+    }
+    .form button {
+      width: 100%;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.75);
+      border: none;
+      color: #fff;
+      transition: background-color 0.3s ease;
+    }
+    .form button:hover {
+      background-color: indianred;
+    }
+    .tooltip {
+            position: relative;
+            display: compact;
+            cursor: pointer;
+        }
+    .tooltip-text {
+      visibility: hidden;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      text-align: center;
+      border-radius: 5px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s, visibility 0.3s;
+      width: 200px; /* Add a fixed width to the tooltip */
+      white-space: nowrap; /* Prevent tooltip text from wrapping */
+    }
+    .tooltip:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+    }
+  </style>
+</head>
+<body>
+<div class="form">
+  <div class="student-name" href = "http://127.0.0.1:8000" >Павлов Данила </div>
+    <button onclick="window.location.href = 'http://127.0.0.1:8000';" style="margin: 20px; width: 10%">logout</button>
+</div>
+  <div class="container">
+  <div class="table-container">
+    <table>
+      <tr>
+        <th>Часы</th>
+        <th>Понедельник</th>
+        <th>Вторник</th>
+        <th>Среда</th>
+        <th>Пятница</th>
+        <th>Суббота</th>
+      </tr>
+      <tr>
+        <td> 8.30 - 10.00 </td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">Контрольная по теме пошол нахуй</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+      </tr>
+      <tr>
+        <td>10.10 - 11.40</td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+      </tr>
+      <tr>
+        <td>11.50 - 13.20</td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+      </tr>
+      <tr>
+        <td>13.50 - 15.20</td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+      </tr>
+      <tr>
+        <td>15.30 - 17.00</td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+      </tr>
+      <tr>
+        <td>17.10 - 18.40</td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+      </tr>
+      <tr>
+        <td>18.50 - 20.20</td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<script>
+    // Привязываем всплывающее окно к каждому элементу с классом "tooltip"
+    var tooltips = document.querySelectorAll('.tooltip');
+    tooltips.forEach(function (tooltip) {
+        tooltip.addEventListener('mouseover', function () {
+            var tooltipText = this.querySelector('.tooltip-text');
+            tooltipText.style.visibility = 'visible';
+            tooltipText.style.opacity = '1';
+        });
+        tooltip.addEventListener('mouseout', function () {
+            var tooltipText = this.querySelector('.tooltip-text');
+            tooltipText.style.visibility = 'hidden';
+            tooltipText.style.opacity = '0';
+        });
+    });
+
+    // Добавляем обработчик события клика на ячейку таблицы
+    var cells = document.querySelectorAll('.table-container td.tooltip');
+    cells.forEach(function (cell) {
+        cell.addEventListener('click', function () {
+            // Проверяем, есть ли уже открытая форма редактирования
+            if (editForm) {
+                return; // Если есть, выходим из обработчика клика
+            }
+
+            // Удаляем подсветку у предыдущей выбранной ячейки
+            var selectedCell = document.querySelector('.selected-cell');
+            if (selectedCell) {
+                selectedCell.classList.remove('selected-cell');
+            }
+
+            // Добавляем подсветку текущей выбранной ячейки
+            this.classList.add('selected-cell');
+
+            // Отображаем форму для редактирования данных ячейки
+            showEditForm();
+        });
+    });
+
+</script>
+</body>
+</html>
