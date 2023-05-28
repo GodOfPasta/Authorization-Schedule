@@ -4,106 +4,120 @@
     <meta charset="UTF-8">
 <title>Расписание</title>
   <style>
-    body {
-      background-image: url("https://i.gifer.com/BUhB.gif");
-      background-size: cover;
-      background-position: center;
-      font-family: Arial, sans-serif;
-      overflow-y: scroll;
-      margin: 0;
+        body {                           /* Основная тушка проекта  */
+        background: url('https://i.gifer.com/BUhB.gif');
+        background-size: cover;
+        background-position: center;
+        font-family: Arial, sans-serif;
+        overflow-y: scroll;
+        margin: 0;
     }
 
-    .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.75);
-        }
-    .table-container {
-        margin: 5%;
+    .container {                        /* Контейнер в котором находится таблица  */
         display: flex;
+        flex-direction: column;
+        align-items: center;            /* Позиционирование элементов контейнеар */
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    .table-container {                  /* Контейнер в котором находится таблица  */
+        margin: 5%;
+        display: flex;                  /* Растягивание таблицы в высоту */
         width: 90%;
-        height: 60%;
+        height:70%;
         overflow: auto;
         background-color: rgba(0, 0, 0, 0.25);
     }
 
     table {
-      font-family: 'Comic Sans MS';
-      color:#ffffff;
-      width: 100%; /* Изменили ширину таблицы на 100% */
-      border-collapse: collapse;
+        font-family: 'Comic Sans MS';     /* Основной шрифт таблицы*/
+        color:#ffffff;
+        width: 100%;
+        border-collapse: collapse;        /* Ширина между ячейками. Если убрать будут отступы в 1px*/
     }
 
-    th, td {
-      padding: 10px;
-      width: 10%;
-      text-align: center;
+    th, td {                              /* Задаем параметры ячеек таблицы */
+        border: 1px solid gray;
+        padding: 10px;
+        width: 10%;
+        text-align: center;
     }
 
-    th:first-child, td:first-child {
-      background-color: #333;
-      color: #fff;
-    }
-    th:first-child, td:first-child {
-      background-color: #333;
-      color: #fff;
+    td.highlight {
+        border: 2px solid indianred;        /* Определяем стиль рамки для ячеек с непустым элементом <span> */
     }
 
-    td:hover {
-      background-color: indianred;
-      color: #000;
+    td span:not(:empty) {
+        display: inline-block;              /* Устанавливаем display: inline-block, чтобы рамка охватывала только содержимое <span> */
+        padding: 5px;                       /* Добавляем отступ вокруг содержимого <span> */
     }
-    .student-name {
+
+    th:first-child, td:first-child {        /* Изменение цвета персовго стрлбца (столбец с временем)*/
+        background-color: #333;
+        color: #fff;
+    }
+
+    td:hover {                              /* Изменение цвета при наведении */
+        background-color: indianred;
+        color: #000;
+    }
+
+    .student-name {                         /* Параметры бокса с именем студента */
         margin: 20px ;
         text-align: left;
         color: #ffffff;
         font-size: xx-large;
     }
-    .form {
-      display: flex;
-      justify-content: space-between;
-      text-align: left;
-      height: 20%;
-      color:#ffffff;
-      background-color: rgba(0, 0, 0, 0.85);
-      font-family: 'Comic Sans MS';
+
+    .form {                             /* бокс, с именем студента и кнопкой выхода*/
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        height: 20%;
+        color:#ffffff;
+        background-color: rgba(0, 0, 0, 0.85);
+        font-family: 'Comic Sans MS';
     }
-    .form button {
-      width: 100%;
-      padding: 10px;
-      background-color: rgba(0, 0, 0, 0.75);
-      border: none;
-      color: #fff;
-      transition: background-color 0.3s ease;
+
+    .form button {                      /* параметры кнопки в form */
+        width: 100%;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.75);
+        border: none;
+        color: #fff;
+        transition: background-color 0.3s ease;
     }
-    .form button:hover {
-      background-color: indianred;
+
+    .form button:hover {                /* Изменение цвета при наведении на кнопку */
+        background-color: indianred;
     }
-    .tooltip {
-            position: relative;
-            display: compact;
-            cursor: pointer;
-        }
-    .tooltip-text {
-      visibility: hidden;
-      background-color: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      text-align: center;
-      border-radius: 5px;
-      padding: 5px;
-      position: absolute;
-      z-index: 1;
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0;
-      transition: opacity 0.3s, visibility 0.3s;
-      width: 200px; /* Add a fixed width to the tooltip */
-      white-space: nowrap; /* Prevent tooltip text from wrapping */
+
+    .tooltip {                          /* Окно с коментарием */
+        position: relative;
+        display: compact;
+        cursor: pointer;
     }
-    .tooltip:hover .tooltip-text {
+
+    .tooltip-text {                     /* Параметры  текста в коментарии */
+        visibility: hidden;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 100%; /
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s, visibility 0.3s;
+        width: 200px;
+        white-space: nowrap;
+    }
+
+    .tooltip:hover .tooltip-text {  /* Появление комментария при наведении на ячейку */
         visibility: visible;
         opacity: 1;
     }
@@ -127,65 +141,65 @@
       </tr>
       <tr>
         <td> 8.30 - 10.00 </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">Контрольная по теме пошол нахуй</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">Контрольная по теме собачки макимы гав гав </span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
       </tr>
       <tr>
         <td>10.10 - 11.40</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
       </tr>
       <tr>
         <td>11.50 - 13.20</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
       </tr>
       <tr>
         <td>13.50 - 15.20</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
       </tr>
       <tr>
         <td>15.30 - 17.00</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
       </tr>
       <tr>
         <td>17.10 - 18.40</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
       </tr>
       <tr>
         <td>18.50 - 20.20</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">text</span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
       </tr>
     </table>
   </div>
 </div>
 <script>
-    // Привязываем всплывающее окно к каждому элементу с классом "tooltip"
+        // Привязываем всплывающее окно комментария к каждому элементу с классом "tooltip"
     var tooltips = document.querySelectorAll('.tooltip');
     tooltips.forEach(function (tooltip) {
         tooltip.addEventListener('mouseover', function () {
@@ -220,6 +234,16 @@
 
             // Отображаем форму для редактирования данных ячейки
             showEditForm();
+        });
+    });
+        // Проверка на наличие комментариев и дальнейшую подсветку
+    document.addEventListener("DOMContentLoaded", function() {
+        var tds = document.querySelectorAll("td");
+
+        tds.forEach(function(td) {
+          if (td.querySelector("span:not(:empty)")) {
+            td.classList.add("highlight");
+          }
         });
     });
 
