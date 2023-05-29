@@ -232,34 +232,34 @@ INSERT INTO public.room(id, name) VALUES (322, '322');
 /*cell table creating*/
 CREATE TABLE IF NOT EXISTS public.cell
 (
-    "Day" bigint NOT NULL,
-    "Student_Group_id" bigint NOT NULL,
-    "Subject_Code" character varying COLLATE pg_catalog."default" NOT NULL,
-    "Room" bigint NOT NULL,
-    "Pair" bigint NOT NULL,
-    "Teacher_pk" bigint NOT NULL,
-    "Event" text COLLATE pg_catalog."default",
-    CONSTRAINT "Pair" FOREIGN KEY ("Pair")
+    "day" bigint NOT NULL,
+    "student_group_id" bigint NOT NULL,
+    "subject_code" character varying COLLATE pg_catalog."default" NOT NULL,
+    "room" bigint NOT NULL,
+    "pair" bigint NOT NULL,
+    "teacher_pk" bigint NOT NULL,
+    "event" text COLLATE pg_catalog."default",
+    CONSTRAINT "pair" FOREIGN KEY ("pair")
         REFERENCES public.pair ("number") MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
         NOT VALID,
-    CONSTRAINT "Room" FOREIGN KEY ("Room")
+    CONSTRAINT "room" FOREIGN KEY ("room")
         REFERENCES public.room (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
         NOT VALID,
-    CONSTRAINT "Student_Group" FOREIGN KEY ("Student_Group_id")
+    CONSTRAINT "student_group" FOREIGN KEY ("student_group_id")
         REFERENCES public.student_group (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
         NOT VALID,
-    CONSTRAINT "Subject_code" FOREIGN KEY ("Subject_Code")
+    CONSTRAINT "subject_code" FOREIGN KEY ("subject_code")
         REFERENCES public.subject (code) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
         NOT VALID,
-    CONSTRAINT "Teacher" FOREIGN KEY ("Teacher_pk")
+    CONSTRAINT "teacher" FOREIGN KEY ("teacher_pk")
         REFERENCES public.teacher (teacher_id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
