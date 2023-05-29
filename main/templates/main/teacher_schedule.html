@@ -274,12 +274,22 @@ function showEditForm() {
             var newText = input.value;
             tooltipText.textContent = newText;
 
-            // Remove the edit form and reset variables
+            // Удалить форму редактирования и сбросить переменные
             editForm.remove();
             selectedCell.classList.remove('selected-cell');
             editForm = null;
             selectedCell = null;
             tooltipText = null;
+
+            // Проверка на наличие комментариев и дальнейшую подсветку
+            var tds = document.querySelectorAll("td");
+            tds.forEach(function(td) {
+                if (td.querySelector("span:not(:empty)")) {
+                    td.classList.add("highlight");
+                } else {
+                    td.classList.remove("highlight");
+                }
+            });
         }
     }
     // Проверка на наличие комментариев и дальнейшую подсветку
