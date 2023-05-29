@@ -56,24 +56,28 @@
       box-sizing: border-box;
     }
 
-    .form button {
+    .form div#error{
+        color: red;
+    }
+
+    .form a{
+        color: indianred;
+        text-decoration: none;
+    }
+
+    .form input#button {
       width: 100%;
       padding: 10px;
       background-color: rgba(0, 0, 0, 0.75);
       border: none;
       color: #fff;
       transition: background-color 0.3s ease;
-    }
-
-    .form button:hover {
-      background-color: indianred;
-    }
-
-    .rememberme {
-      margin-bottom: 20px;
-      text-align: left;
-      color:#ffffff;
+      font-size:large ;
       font-family: 'Comic Sans MS';
+    }
+
+    .form input#button:hover {
+      background-color: indianred;
     }
 
     .fade-in {
@@ -102,6 +106,7 @@
   </style>
 </head>
 <body>
+  </form>
     <div class="container">
         <div class="content">
             <div class="fade-in block2">
@@ -111,19 +116,42 @@
             </div>
 
             <div class="fade-in block2">
-                <div class="form">
-                    <h2>Login</h2>
-                    <label for="loginUsername">Name:</label>
-                    <input type="text" id="loginUsername" name="loginUsername" required>
-                    <label for="loginPassword">Password:</label>
-                    <input type="password" id="loginPassword" name="loginPassword" required>
-                </div>
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div class="form">
+                        <h2>Login</h2>
 
-                <div class="rememberme">
-                    <input type="checkbox"> <label>Remember me</label>
-                </div>
+                        <!-- Этот кал выводит ошибку логина -->
+                        <div id="error">
+                            {% if form.errors %}
+                                <p>Your username or password didn't match. Please try again.</p>
+                            {% endif %}
+                            
+                            {% if next %}
+                                {% if user.is_authenticated %}
+                                <p>Your account doesn't have access to this page. To proceed,
+                                please login with an account that has access.</p>
+                                {% else %}
+                                <p>Please login to see this page.</p>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-                <div class="form">
+                        <label for="loginUsername">Name:</label>
+                        {{ form.username }}
+                        <label for="loginPassword">Password:</label>
+                        {{ form.password }}
+
+                    {# Assumes you setup the password_reset view in your URLconf #}
+                    <p><a href="{% url 'password_reset' %}">Forgot password?</a></p>
+
+                    <input type="submit" id="button" value="Submit" />
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    </div>
+                </form>
+
+                <!-- <div class="form">
                     <button onclick="submit()" style="color:#ffffff; font-family: 'Comic Sans MS';">Submit</button>
                 </div>
                 <div class="form">
@@ -131,31 +159,32 @@
                 </div>
                 <div class="form">
                     <button onclick="window.location.href = 'http://127.0.0.1:8000/admin_table';" style="color:#ffffff; font-family: 'Comic Sans MS';">admin_table</button>
-                </div>
+                </div> -->
+
             </div>
         </div>
     </div>
     <script>
-            var login;
-            function submit(){
-              login = document.getElementById("loginUsername").value;
-              window.location.href = 'http://127.0.0.1:8000/stud_schedule';
-            }
+      var login;
+      function submit(){
+        login = document.getElementById("loginUsername").value;
+        window.location.href = 'http://127.0.0.1:8000/stud_schedule';
+        localStorage.setItem("userLogin", login)
+      }
 
-            window.addEventListener("DOMContentLoaded", function() {
-            var divs = document.querySelectorAll(".fade-in");
+      window.addEventListener("DOMContentLoaded", function() {
+        var divs = document.querySelectorAll(".fade-in");
 
-            function fadeInDivs(index) {
-                if (index < divs.length) {
-                    divs[index].style.opacity = "1";
-                    setTimeout(function() {
-                        fadeInDivs(index + 1);
-                    }, 1000);
-                }
-            }
-
-            fadeInDivs(0);
-        });
+        function fadeInDivs(index) {
+          if (index < divs.length) {
+            divs[index].style.opacity = "1";
+              setTimeout(function() {
+                fadeInDivs(index + 1)
+                ;}, 1000);
+          }
+        }
+        fadeInDivs(0);
+      });
     </script>
 </body>
 </html>

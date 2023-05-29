@@ -126,7 +126,7 @@
 </head>
 <body>
 <div class="form">
-  <div class="student-name" href = "http://127.0.0.1:8000"> <div id = "login"></div></div>
+  <div class="student-name" href = "http://127.0.0.1:8000" id = "name"></div>
     <button onclick="window.location.href = 'http://127.0.0.1:8000';" style="margin: 20px; width: 10%">logout</button>
 </div>
   <div class="container">
@@ -208,11 +208,7 @@
   </div>
 </div>
 <script>
-    import { login } from "authorization.html";
-    alert(login);
-    document.getElementById("login").innerHTML = "aaa";
-
-        // Привязываем всплывающее окно комментария к каждому элементу с классом "tooltip"
+    // Привязываем всплывающее окно комментария к каждому элементу с классом "tooltip"
     var tooltips = document.querySelectorAll('.tooltip');
     tooltips.forEach(function (tooltip) {
         tooltip.addEventListener('mouseover', function () {
@@ -227,29 +223,7 @@
         });
     });
 
-    // Добавляем обработчик события клика на ячейку таблицы
-    var cells = document.querySelectorAll('.table-container td.tooltip');
-    cells.forEach(function (cell) {
-        cell.addEventListener('click', function () {
-            // Проверяем, есть ли уже открытая форма редактирования
-            if (editForm) {
-                return; // Если есть, выходим из обработчика клика
-            }
-
-            // Удаляем подсветку у предыдущей выбранной ячейки
-            var selectedCell = document.querySelector('.selected-cell');
-            if (selectedCell) {
-                selectedCell.classList.remove('selected-cell');
-            }
-
-            // Добавляем подсветку текущей выбранной ячейки
-            this.classList.add('selected-cell');
-
-            // Отображаем форму для редактирования данных ячейки
-            showEditForm();
-        });
-    });
-        // Проверка на наличие комментариев и дальнейшую подсветку
+    // Проверка на наличие комментариев и дальнейшую подсветку
     document.addEventListener("DOMContentLoaded", function() {
         var tds = document.querySelectorAll("td");
 
@@ -258,6 +232,8 @@
             td.classList.add("highlight");
           }
         });
+        var login = localStorage.getItem("userLogin");
+        document.getElementById("name").textContent = login;
     });
 
 </script>
