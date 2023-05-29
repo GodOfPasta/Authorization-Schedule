@@ -124,7 +124,7 @@
                 </div>
 
                 <div class="form">
-                    <button onclick="window.location.href = 'http://127.0.0.1:8000/stud_schedule';" style="color:#ffffff; font-family: 'Comic Sans MS';">Submit</button>
+                    <button onclick="submit()" style="color:#ffffff; font-family: 'Comic Sans MS';">Submit</button>
                 </div>
                 <div class="form">
                     <button onclick="window.location.href = 'http://127.0.0.1:8000/teacher_schedule';" style="color:#ffffff; font-family: 'Comic Sans MS';">teacher_schedule</button>
@@ -136,7 +136,13 @@
         </div>
     </div>
     <script>
-                window.addEventListener("DOMContentLoaded", function() {
+            var login;
+            function submit(){
+              login = document.getElementById("loginUsername").value;
+              window.location.href = 'http://127.0.0.1:8000/stud_schedule';
+            }
+
+            window.addEventListener("DOMContentLoaded", function() {
             var divs = document.querySelectorAll(".fade-in");
 
             function fadeInDivs(index) {

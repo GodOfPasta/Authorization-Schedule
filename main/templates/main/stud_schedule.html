@@ -108,7 +108,7 @@
         padding: 5px;
         position: absolute;
         z-index: 1;
-        bottom: 100%; /
+        bottom: 100%; 
         left: 50%;
         transform: translateX(-50%);
         opacity: 0;
@@ -125,7 +125,7 @@
 </head>
 <body>
 <div class="form">
-  <div class="student-name" href = "http://127.0.0.1:8000" >Павлов Данила </div>
+  <div class="student-name" href = "http://127.0.0.1:8000"> <div id = "login"></div></div>
     <button onclick="window.location.href = 'http://127.0.0.1:8000';" style="margin: 20px; width: 10%">logout</button>
 </div>
   <div class="container">
@@ -199,6 +199,10 @@
   </div>
 </div>
 <script>
+    import { login } from "authorization.html";
+    alert(login);
+    document.getElementById("login").innerHTML = "aaa";
+
         // Привязываем всплывающее окно комментария к каждому элементу с классом "tooltip"
     var tooltips = document.querySelectorAll('.tooltip');
     tooltips.forEach(function (tooltip) {
