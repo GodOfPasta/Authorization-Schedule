@@ -239,6 +239,8 @@ CREATE TABLE IF NOT EXISTS public.cell
     "pair" bigint NOT NULL,
     "teacher_pk" bigint NOT NULL,
     "event" text COLLATE pg_catalog."default",
+    id bigint NOT NULL DEFAULT 'nextval('cell_id_seq'::regclass)',
+    CONSTRAINT cell_pkey PRIMARY KEY (id),
     CONSTRAINT "pair" FOREIGN KEY ("pair")
         REFERENCES public.pair ("number") MATCH SIMPLE
         ON UPDATE NO ACTION
