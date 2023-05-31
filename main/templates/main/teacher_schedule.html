@@ -146,313 +146,482 @@
         <th>Пятница</th>
         <th>Суббота</th>
       </tr>
-      {% for cell in cells %}
-      {% if cell.pair.number  == 0 %}
       <tr>
-        <td> 8.30 - 10.00 </td>
+        <td> 08.30 - 10.00 </td>
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 %}
           {% if cell.day  == 1 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
-        </td>
-        <td class="tooltip">
-          {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }}  <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'event-update' cell.id %}">{% if cell.day != 2 %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 %}
+          {% if cell.day  == 2 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 %}
           {% if cell.day  == 3 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
            <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 %}
           {% if cell.day  == 4 %}
-          {{ cell.subject_code }}<br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 %}
           {% if cell.day  == 5 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
            <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 %}
           {% if cell.day  == 6 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+           {% endif %}
           {% endif %}
+          {% endfor %}
         </td>
       </tr>
-      {% endif %}
-      {% endfor %}
-      {% for cell in cells %}
-      {% if cell.pair.number  == 1 %}
       <tr>
         <td> 10.10 - 11.40 </td>
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 %}
           {% if cell.day  == 1 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
         </td>
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 %}
           {% if cell.day  == 2 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'event-update' cell.id %}">{% if cell.day != 2 %}<button>Кнопка</button> {% endif %}</a>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 %}
           {% if cell.day  == 3 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
            <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 %}
           {% if cell.day  == 4 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 %}
           {% if cell.day  == 5 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
            <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 %}
           {% if cell.day  == 6 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+           {% endif %}
           {% endif %}
+          {% endfor %}
         </td>
       </tr>
-      {% endif %}
-      {% endfor %}
-      {% for cell in cells %}
-      {% if cell.pair.number  == 2 %}
+
+
       <tr>
         <td> 11.50 - 13.20 </td>
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 %}
           {% if cell.day  == 1 %}
-          {{ cell.subject_code }}  <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
         </td>
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 %}
           {% if cell.day  == 2 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'event-update' cell.id %}">{% if cell.day != 2 %}<button>Кнопка</button> {% endif %}</a>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 %}
           {% if cell.day  == 3 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
            <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 %}
           {% if cell.day  == 4 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 %}
           {% if cell.day  == 5 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
            <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 %}
           {% if cell.day  == 6 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+           {% endif %}
           {% endif %}
+          {% endfor %}
         </td>
       </tr>
-      {% endif %}
-      {% endfor %}
-
       <tr>
         <td> 13.50 - 15.20 </td>
-        {% for cell in cells %}
-      {% if cell.pair.number  == 3 %}
-       <td class="tooltip">
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 %}
           {% if cell.day  == 1 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
         </td>
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 %}
           {% if cell.day  == 2 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'event-update' cell.id %}">{% if cell.day != 2 %}<button>Кнопка</button> {% endif %}</a>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 %}
           {% if cell.day  == 3 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
            <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 %}
           {% if cell.day  == 4 %}
-          {{ cell.subject_code }}  <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-        </td>
-        <td class="tooltip">
-          {% if cell.day  == 5 %}
-          {{ cell.subject_code}} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-        </td>
-        <td class="tooltip">
-          {% if cell.day  == 6 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 %}
+          {% if cell.day  == 5 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 %}
+          {% if cell.day  == 6 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+           {% endif %}
           {% endif %}
           {% endfor %}
         </td>
       </tr>
       <tr>
         <td> 15.30 - 17.00 </td>
-        {% for cell in cells %}
-      {% if cell.pair.number  == 4 %}
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 %}
           {% if cell.day  == 1 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endif %}
+          {% endfor %}
         </td>
         <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 %}
           {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'event-update' cell.id %}">{% if cell.day != 2 %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-        </td>
-        <td class="tooltip">
-          {% if cell.day  == 3 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-        </td>
-        <td class="tooltip">
-          {% if cell.day  == 4 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-        </td>
-        <td class="tooltip">
-          {% if cell.day  == 5 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-        </td>
-        <td class="tooltip">
-          {% if cell.day  == 6 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-           {% endif %}
-      {% endfor %}
-        </td>
-      </tr>
-      <td> 17.10 - 18.40 </td>
-       {% for cell in cells %}
-      {% if cell.pair.number  == 5 %}
-      <tr>
-        <td class="tooltip">
-          {% if cell.day  == 1 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-        </td>
-        <td class="tooltip">
-          {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'event-update' cell.id %}">{% if cell.day != 2 %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-        </td>
-        <td class="tooltip">
-          {% if cell.day  == 3 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-        </td>
-        <td class="tooltip">
-          {% if cell.day  == 4 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-        </td>
-        <td class="tooltip">
-          {% if cell.day  == 5 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-        </td>
-        <td class="tooltip">
-          {% if cell.day  == 6 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-          {% endif %}
-      {% endfor %}
-        </td>
-      </tr>
-
-      <tr>
-        <td> 18.50 - 20.20 </td>
-        {% for cell in cells %}
-        {% if cell.pair.number  == 6 %}
-        <td class="tooltip">
-          {% if cell.day  == 1 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-        </td>
-        <td class="tooltip">
-          {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'event-update' cell.id %}">{% if cell.day != 2 %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-        </td>
-        <td class="tooltip">
-          {% if cell.day  == 3 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-        </td>
-        <td class="tooltip">
-          {% if cell.day  == 4 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-        </td>
-        <td class="tooltip">
-          {% if cell.day  == 5 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
-          {% endif %}
-        </td>
-        <td class="tooltip">
-          {% if cell.day  == 6 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
           {% endif %}
           {% endfor %}
         </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 %}
+          {% if cell.day  == 3 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 %}
+          {% if cell.day  == 4 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 %}
+          {% if cell.day  == 5 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 %}
+          {% if cell.day  == 6 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+           {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+      </tr>
+      <tr>
+        <td> 17.10 - 18.40 </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 %}
+          {% if cell.day  == 1 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 %}
+          {% if cell.day  == 2 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 %}
+          {% if cell.day  == 3 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 %}
+          {% if cell.day  == 4 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 %}
+          {% if cell.day  == 5 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 %}
+          {% if cell.day  == 6 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+           {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
       </tr>
 
+      <tr>
+        <td> 18.50 - 20.20 </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 %}
+          {% if cell.day  == 1 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 %}
+          {% if cell.day  == 2 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 %}
+          {% if cell.day  == 3 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 %}
+          {% if cell.day  == 4 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 %}
+          {% if cell.day  == 5 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 %}
+          {% if cell.day  == 6 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+           {% endif %}
+          {% endif %}
+          {% endfor %}
+        </td>
+      </tr>
     </table>
   </div>
 </div>
+
 <script>
 
  // Привязываем всплывающее окно к каждому элементу с классом "tooltip"
