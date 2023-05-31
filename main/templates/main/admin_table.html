@@ -2,8 +2,8 @@
 <html lang="en" xmlns:font-family="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-<title>Расписание</title>
-  <style>
+    <title>Горизонтальные вкладки с таблицами</title>
+<style>
     body {
       background-image: url("https://i.gifer.com/BUhB.gif");
       background-size: cover;
@@ -12,16 +12,44 @@
       overflow-y: scroll;
       margin: 0;
     }
-
+    .form {
+      display: flex;
+      justify-content: space-between;
+      text-align: left;
+      height: 20%;
+      color:#ffffff;
+      background-color: rgba(0, 0, 0, 0.85);
+      font-family: 'Comic Sans MS';
+    }
+    .student-name {
+        margin: 20px ;
+        text-align: left;
+        color: #ffffff;
+        font-size: xx-large;
+    }
     .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        text-align: center;
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.75);
     }
+    /* Стили для вкладок */
+    .tab {
+
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ccc;
+        cursor: pointer;
+    }
+
+    .active {
+        background-color: #aaa;
+    }
+
+    /* Стили для таблиц */
     .table-container {
-        margin: 5%;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+        max-height: 0;
         display: flex;
         width: 90%;
         height: 60%;
@@ -29,6 +57,12 @@
         background-color: rgba(0, 0, 0, 0.25);
     }
 
+    .active .table-container {
+        max-height: 60%; /* Задайте желаемую высоту для таблицы */
+        transition: max-height 0.5s ease-in;
+    }
+
+    /* Общие стили для таблиц */
     table {
       font-family: 'Comic Sans MS';
       color:#ffffff;
@@ -41,7 +75,6 @@
       width: 10%;
       text-align: center;
     }
-
     th:first-child, td:first-child {
       background-color: #333;
       color: #fff;
@@ -50,16 +83,9 @@
       background-color: #333;
       color: #fff;
     }
-
     td:hover {
       background-color: indianred;
       color: #000;
-    }
-    .student-name {
-        margin: 20px ;
-        text-align: left;
-        color: #ffffff;
-        font-size: xx-large;
     }
     .form {
       display: flex;
@@ -85,33 +111,6 @@
     .form button:hover {
       background-color: indianred;
     }
-    .tooltip {
-            text-align: left;
-            position: relative;
-            display: compact;
-            cursor: pointer;
-        }
-    .tooltip-text {
-      visibility: hidden;
-      background-color: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      text-align: center;
-      border-radius: 5px;
-      padding: 5px;
-      position: absolute;
-      z-index: 1;
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0;
-      transition: opacity 0.3s, visibility 0.3s;
-      width: 200px; /* Add a fixed width to the tooltip */
-      white-space: nowrap; /* Prevent tooltip text from wrapping */
-    }
-    .tooltip:hover .tooltip-text {
-        visibility: visible;
-        opacity: 1;
-    }
     .form select {
         width: 100%;
         padding: 10px;
@@ -120,7 +119,6 @@
         border: none;
         color: #fff;
     }
-
         .form button {
         width: 100%;
         padding: 10px;
@@ -130,490 +128,929 @@
         transition: background-color 0.3s ease;
         margin-bottom: 10px;
     }
+    </style>
+    <script>
+       // Функция для обработки нажатия на вкладку
+        function toggleTab(tabId) {
+            var tab = document.getElementById(tabId);
+            var tableContainer = document.getElementById(tabId + "-table");
 
-  </style>
+            if (tableContainer.style.maxHeight) {
+                // Вкладка уже открыта, сворачиваем ее
+                tableContainer.style.maxHeight = null;
+                tab.classList.remove("active");
+            } else {
+                // Открываем вкладку и сворачиваем другие
+                var tabs = document.getElementsByClassName("tab");
+                var tableContainers = document.getElementsByClassName("table-container");
+
+                for (var i = 0; i < tabs.length; i++) {
+                    tabs[i].classList.remove("active");
+                    tableContainers[i].style.maxHeight = null;
+                }
+                tableContainer.style.maxHeight = tableContainer.scrollHeight + "px";
+                tab.classList.add("active");
+            }
+        }
+    </script>
 </head>
 <body>
-<div class="form">
-  <div class="student-name" >Павлов Данила </div>
-  <div class="select-container">
-    <select id="group-selected" style="margin: 20px;">
-      <option value="id_group1">2321-ДБ</option>
-      <option value="id_group2">2121-ДБ</option>
-    </select>
-    <select id="teacher-selected" style="margin: 20px;">
-      <option value="">Выберите группу</option>
-      <option value="">Выберите группу</option>
-    </select>
-  </div>
-  <button onclick="window.location.href = 'http://127.0.0.1:8000';" style="margin: 20px; width: 10%">logout</button>
-</div>
-  <div class="container">
-  <div class="table-container">
-    <table>
-      <tr>
-        <th>Часы</th>
-        <th>Понедельник</th>
-        <th>Вторник</th>
-        <th>Среда</th>
-        <th>Четверг</th>
-        <th>Пятница</th>
-        <th>Суббота</th>
-      </tr>
-      <tr>
-        <td> 8.30 - 10.00 </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-      </tr>
-      <tr>
-        <td>10.10 - 11.40</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-      </tr>
-      <tr>
-        <td>11.50 - 13.20</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-      </tr>
-      <tr>
-        <td>13.50 - 15.20</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-      </tr>
-      <tr>
-        <td>15.30 - 17.00</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-      </tr>
-      <tr>
-        <td>17.10 - 18.40</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-      </tr>
-      <tr>
-        <td>18.50 - 20.20</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
-      </tr>
-    </table>
-  </div>
-</div>
-<script>
-    // Привязываем всплывающее окно к каждому элементу с классом "tooltip"
-    var tooltips = document.querySelectorAll('.tooltip');
-    tooltips.forEach(function (tooltip) {
-        tooltip.addEventListener('mouseover', function () {
-            var tooltipText = this.querySelector('.tooltip-text');
-            tooltipText.style.visibility = 'visible';
-            tooltipText.style.opacity = '1';
-        });
-        tooltip.addEventListener('mouseout', function () {
-            var tooltipText = this.querySelector('.tooltip-text');
-            tooltipText.style.visibility = 'hidden';
-            tooltipText.style.opacity = '0';
-        });
-    });
-
-    var editForm = null;
-
-    // Добавляем обработчик события клика на ячейку таблицы
-    var cells = document.querySelectorAll('.table-container td.tooltip');
-    cells.forEach(function (cell) {
-        cell.addEventListener('click', function () {
-            // Проверяем, есть ли уже открытая форма редактирования
-            if (editForm) {
-                return; // Если есть, выходим из обработчика клика
-            }
-
-            // Удаляем подсветку у предыдущей выбранной ячейки
-            var selectedCell = document.querySelector('.selected-cell');
-            if (selectedCell) {
-                selectedCell.classList.remove('selected-cell');
-            }
-
-            // Добавляем подсветку текущей выбранной ячейки
-            this.classList.add('selected-cell');
-
-            // Отображаем форму для редактирования данных ячейки
-            showEditForm();
-        });
-    });
-
-    // Функция для отображения формы редактирования данных ячейки
-    function showEditForm() {
-    // Отображаем форму редактирования
-    editForm = document.createElement('div');
-    editForm.classList.add('edit-form');
-    editForm.innerHTML = `
-    <div class="form" style="height: 100%; background-color: rgba(0, 0, 0, 0.25);">
-        <div class="input-container" style="width: 200%">
-            <label for="teacher-select" >Преподаватель:</label>
-            <select id="teacher-select" style="margin: 10px;">
-                <option value="">Выберите преподавателя</option>
-                <option value="teacher1">Преподаватель 1</option>
-                <option value="teacher2">Преподаватель 2</option>
-                <!-- Добавьте остальные варианты преподавателей -->
-            </select>
+        <div class="form">
+              <div class="student-name" >Павлов Данила </div>
+              <button onclick="window.location.href = 'http://127.0.0.1:8000';" style="margin: 20px; width: 10%">logout</button>
         </div>
-        <div class="input-container" style="width: 200%">
-            <label for="group-select">Группа:</label>
-            <select id="group-select" style="margin: 10px;">
-                <option value="">Выберите группу</option>
-                <option value="group1">Группа 1</option>
-                <option value="group2">Группа 2</option>
-                <!-- Добавьте остальные варианты групп -->
-            </select>
-        </div>
-        <div class="input-container" style="width: 200%">
-            <label for="room-select">Аудитория:</label>
-            <select id="room-select" style="margin: 10px;">
-                <option value="">Выберите аудиторию</option>
-                <option value="room1">Аудитория 1</option>
-                <option value="room2">Аудитория 2</option>
-                <!-- Добавьте остальные варианты аудиторий -->
-            </select>
-        </div>
-        <button onclick="saveChanges()" style="margin-top: 3%; margin-bottom: 3%; margin-left: 10%; margin-right: 10%;    ">Сохранить</button>
-    </div>`;
-    // Добавляем форму редактирования в документ
-    var container = document.querySelector('.container');
-    container.appendChild(editForm);
-}
-
-
-    function saveChanges() {
-    // Получаем значения выбранных опций
-    var selectedTeacher = editForm.querySelector('#teacher-select').value;
-    var selectedGroup = editForm.querySelector('#group-select').value;
-    var selectedRoom = editForm.querySelector('#room-select').value;
-
-    // Обновляем содержимое выбранной ячейки таблицы
-    var selectedCell = document.querySelector('.selected-cell');
-    selectedCell.innerHTML = `${selectedTeacher} <br> ${selectedGroup} <br> ${selectedRoom}`;
-
-    // Удаляем форму редактирования
-    var container = document.querySelector('.container');
-    container.removeChild(editForm);
-    editForm = null; // Сбрасываем ссылку на форму
-    }
-
-    /* тут начинается кал */
-
-
-
-       // Функция для отображения формы редактирования данных ячейки
-    function showTable() {
-    var selectElement = document.getElementById("group-selected");
-    var selectedValue = selectElement.options[selectElement.selectedIndex].value.trim();
-
-    // Отображаем форму редактирования
-    editForm = document.createElement('div');
-    editForm.classList.add('edit-form');
-    editForm.innerHTML = `<table>
-      <tr>
-        <th>Часы</th>
-        <th>Понедельник</th>
-        <th>Вторник</th>
-        <th>Среда</th>
-        <th>Четверг</th>
-        <th>Пятница</th>
-        <th>Суббота</th>
-      </tr>
-      {% for cell in cells %}
-      {% if cell.pair.number == 0 and cell.student_group.Student_Group_id == '${selectedValue}' %}
-      <tr>
-        <td> 8.30 - 10.00 </td>
+            <div class = "container">
+                <div>
+                   <div class="tab" id="tab1" onclick="toggleTab('tab1')">Группа 1</div>
+                   <div class="tab" id="tab2" onclick="toggleTab('tab2')">Группа 2</div>
+                   <div class="tab" id="tab3" onclick="toggleTab('tab3')">Группа 3</div>
+{#                   <div class="tab" id="tab3" onclick="toggleTab('tab3')">Группа 4</div>#}
+{#                   <div class="tab" id="tab1" onclick="toggleTab('tab1')">Группа 5</div>#}
+{#                   <div class="tab" id="tab2" onclick="toggleTab('tab2')">Группа 6</div>#}
+{#                   <div class="tab" id="tab3" onclick="toggleTab('tab3')">Группа 7</div>#}
+{#                   <div class="tab" id="tab3" onclick="toggleTab('tab3')">Группа 8</div>#}
+                </div>
+                    <div class="table-container" id="tab1-table">
+                        <table>
+                          <tr>
+                            <th>Часы</th>
+                            <th>Понедельник</th>
+                            <th>Вторник</th>
+                            <th>Среда</th>
+                            <th>Четверг</th>
+                            <th>Пятница</th>
+                            <th>Суббота</th>
+                          </tr>
+                           <tr>
+        <td> 08.30 - 10.00 </td>
         <td class="tooltip">
-          {% if cell.day  == 1 %}
-          {{ cell.pair }} <br> '${selectedValue}'  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 and cell.day  == 1 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
-          <a href="{% url 'event-update' cell.id %}"><button>Кнопка</button></a>
+          {% endfor %}
         </td>
         <td class="tooltip">
-          {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 and cell.day  == 2 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 3 %}
-          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 and cell.day  == 3 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 4 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 and cell.day  == 4 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 5 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 and cell.day  == 5 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 6 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          {% endif %}
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 and cell.day  == 6 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+           {% endif %}
+          {% endfor %}
         </td>
       </tr>
-      {% endif %}
-      {% endfor %}
-      {% for cell in cells %}
-      {% if cell.pair.number  == 1 and cell.student_group.Student_Group_id == XX %}
       <tr>
         <td> 10.10 - 11.40 </td>
         <td class="tooltip">
-          {% if cell.day  == 1 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 and cell.day  == 1 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+
+          {% endfor %}
         </td>
         <td class="tooltip">
-          {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 and cell.day  == 2 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 3 %}
-          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 and cell.day  == 3 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 4 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 and cell.day  == 4 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 5 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 and cell.day  == 5 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 6 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 and cell.day  == 6 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
       </tr>
-      {% endif %}
-      {% endfor %}
-      {% for cell in cells %}
-      {% if cell.pair.number  == 2 and cell.student_group.Student_Group_id == XX %}
+
+
       <tr>
         <td> 11.50 - 13.20 </td>
         <td class="tooltip">
-          {% if cell.day  == 1 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 and cell.day  == 1 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
         <td class="tooltip">
-          {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 and cell.day  == 2 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 3 %}
-          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 and cell.day  == 3 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 4 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 and cell.day  == 4 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 5 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 and cell.day  == 5 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 6 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 and cell.day  == 6 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
       </tr>
-      {% endif %}
-      {% endfor %}
-      {% for cell in cells %}
-      {% if cell.pair.number  == 3 and cell.student_group.Student_Group_id == XX %}
       <tr>
         <td> 13.50 - 15.20 </td>
         <td class="tooltip">
-          {% if cell.day  == 1 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 and cell.day  == 1 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
         <td class="tooltip">
-          {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 and cell.day  == 2 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 3 %}
-          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 and cell.day  == 3 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 4 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 and cell.day  == 4 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 5 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 and cell.day  == 5 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 6 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 and cell.day  == 6 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
       </tr>
-      {% endif %}
-      {% endfor %}
-      {% for cell in cells %}
-      {% if cell.pair.number  == 4 and cell.student_group.Student_Group_id == XX %}
       <tr>
         <td> 15.30 - 17.00 </td>
         <td class="tooltip">
-          {% if cell.day  == 1 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 and cell.day  == 1 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
         <td class="tooltip">
-          {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 and cell.day  == 2 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 3 %}
-          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 and cell.day  == 3 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 4 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 and cell.day  == 4 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 5 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 and cell.day  == 5 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 6 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 and cell.day  == 6 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
       </tr>
-      {% endif %}
-      {% endfor %}
-       {% for cell in cells %}
-      {% if cell.pair.number  == 5 and cell.student_group.Student_Group_id == XX %}
       <tr>
         <td> 17.10 - 18.40 </td>
         <td class="tooltip">
-          {% if cell.day  == 1 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 and cell.day  == 1 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
         <td class="tooltip">
-          {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 and cell.day  == 2 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 3 %}
-          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 and cell.day  == 3 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 4 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 and cell.day  == 4 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 5 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 and cell.day  == 5 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 6 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 and cell.day  == 6 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
       </tr>
-      {% endif %}
-      {% endfor %}
-       {% for cell in cells %}
-      {% if cell.pair.number  == 6 and cell.student_group.Student_Group_id == XX %}
+
       <tr>
         <td> 18.50 - 20.20 </td>
         <td class="tooltip">
-          {% if cell.day  == 1 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 and cell.day  == 1 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
         <td class="tooltip">
-          {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 and cell.day  == 2 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 3 %}
-          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 and cell.day  == 3 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 4 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 and cell.day  == 4 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 5 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 and cell.day  == 5 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
+
         <td class="tooltip">
-          {% if cell.day  == 6 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 and cell.day  == 6 and cell.student_group.id  == 12321 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
+          {% endfor %}
         </td>
       </tr>
-      {% endif %}
-      {% endfor %}
-    </table>`;
-    // Добавляем форму редактирования в документ
-    document.body.appendChild(editForm);
-    }
+                        </table>
+                    </div>
+                    <div class="table-container" id="tab2-table">
+                                                <table>
+                          <tr>
+                            <th>Часы</th>
+                            <th>Понедельник</th>
+                            <th>Вторник</th>
+                            <th>Среда</th>
+                            <th>Четверг</th>
+                            <th>Пятница</th>
+                            <th>Суббота</th>
+                          </tr>
+                          <tr>
+                            <td> 08.30 - 10.00 </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 and cell.day  == 1 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 and cell.day  == 2 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
 
-    document.getElementById('group-selected').addEventListener('change', showTable);
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 and cell.day  == 3 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
 
-</script>
-</body>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 and cell.day  == 4 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 and cell.day  == 5 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 0 and cell.day  == 6 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+           {% endif %}
+          {% endfor %}
+        </td>
+      </tr>
+      <tr>
+        <td> 10.10 - 11.40 </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 and cell.day  == 1 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+
+          {% endfor %}
+        </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 and cell.day  == 2 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 and cell.day  == 3 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 and cell.day  == 4 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 and cell.day  == 5 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 1 and cell.day  == 6 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+      </tr>
+
+
+      <tr>
+        <td> 11.50 - 13.20 </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 and cell.day  == 1 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 and cell.day  == 2 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 and cell.day  == 3 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 and cell.day  == 4 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 and cell.day  == 5 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 2 and cell.day  == 6 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+      </tr>
+      <tr>
+        <td> 13.50 - 15.20 </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 and cell.day  == 1 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 and cell.day  == 2 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 and cell.day  == 3 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 and cell.day  == 4 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 and cell.day  == 5 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 3 and cell.day  == 6 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+      </tr>
+      <tr>
+        <td> 15.30 - 17.00 </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 and cell.day  == 1 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 and cell.day  == 2 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 and cell.day  == 3 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 and cell.day  == 4 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 and cell.day  == 5 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 4 and cell.day  == 6 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+      </tr>
+      <tr>
+        <td> 17.10 - 18.40 </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 and cell.day  == 1 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 and cell.day  == 2 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 and cell.day  == 3 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 and cell.day  == 4 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 and cell.day  == 5 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 5 and cell.day  == 6 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+      </tr>
+
+      <tr>
+        <td> 18.50 - 20.20 </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 and cell.day  == 1 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 and cell.day  == 2 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 and cell.day  == 3 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 and cell.day  == 4 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 and cell.day  == 5 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+           <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+
+        <td class="tooltip">
+          {% for cell in cells %}
+          {% if cell.pair.number  == 6 and cell.day  == 6 and cell.student_group.id  == 22121 %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'data-update' cell.id %}">{% if cell.day != null %}<button>Кнопка</button> {% endif %}</a>
+          {% endif %}
+          {% endfor %}
+        </td>
+      </tr>
+                        </table>
+                    </div>
+                    <div class="table-container" id="tab3-table">
+                                                <table>
+                          <tr>
+                            <th>Часы</th>
+                            <th>Понедельник</th>
+                            <th>Вторник</th>
+                            <th>Среда</th>
+                            <th>Четверг</th>
+                            <th>Пятница</th>
+                            <th>Суббота</th>
+                          </tr>
+                          <tr>
+                            <td> 8.30 - 10.00 </td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>10.10 - 11.40</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>11.50 - 13.20</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>13.50 - 15.20</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>15.30 - 17.00</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>17.10 - 18.40</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>18.50 - 20.20</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                        </table>
+                    </div>
+                </div>
+            </body>
+        </div>
 </html>
