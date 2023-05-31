@@ -332,14 +332,11 @@
        // Функция для отображения формы редактирования данных ячейки
     function showTable() {
     var selectElement = document.getElementById("group-selected");
-    var selectedValue = selectElement.value;
+    var selectedValue = selectElement.options[selectElement.selectedIndex].value.trim();
 
-    // Получение элемента, в котором нужно заменить значение
-    var cellElement = document.getElementById("cell-id");
     // Отображаем форму редактирования
     editForm = document.createElement('div');
     editForm.classList.add('edit-form');
-    cellElement.innerHTML = cellElement.innerHTML.replace("XX", selectedValue);
     editForm.innerHTML = `<table>
       <tr>
         <th>Часы</th>
@@ -351,12 +348,12 @@
         <th>Суббота</th>
       </tr>
       {% for cell in cells %}
-      {% if cell.pair.number  == 0 and cell.student_group.Student_Group_id == XX %}
+      {% if cell.pair.number == 0 and cell.student_group.Student_Group_id == '${selectedValue}' %}
       <tr>
         <td> 8.30 - 10.00 </td>
         <td class="tooltip">
           {% if cell.day  == 1 %}
-          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.pair }} <br> '${selectedValue}'  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           <a href="{% url 'event-update' cell.id %}"><button>Кнопка</button></a>
         </td>
