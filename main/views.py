@@ -28,3 +28,6 @@ class EventUpdateView(UpdateView):
 
 def admin_table(request):
     return render(request, 'main/admin_table.html')
+
+def main_admin(request):
+    return render(request, 'main/main_admin.html')

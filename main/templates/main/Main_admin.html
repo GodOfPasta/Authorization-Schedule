@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:font-family="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Горизонтальные вкладки с таблицами</title>
+<style>
+    body {
+      background-image: url("https://i.gifer.com/BUhB.gif");
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      overflow-y: scroll;
+      margin: 0;
+    }
+    .form {
+      display: flex;
+      justify-content: space-between;
+      text-align: left;
+      height: 20%;
+      color:#ffffff;
+      background-color: rgba(0, 0, 0, 0.85);
+      font-family: 'Comic Sans MS';
+    }
+    .student-name {
+        margin: 20px ;
+        text-align: left;
+        color: #ffffff;
+        font-size: xx-large;
+    }
+    .container {
+        text-align: center;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+    /* Стили для вкладок */
+    .tab {
+
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ccc;
+        cursor: pointer;
+    }
+
+    .active {
+        background-color: #aaa;
+    }
+
+    /* Стили для таблиц */
+    .table-container {
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+        max-height: 0;
+        display: flex;
+        width: 90%;
+        height: 60%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.25);
+    }
+
+    .active .table-container {
+        max-height: 60%; /* Задайте желаемую высоту для таблицы */
+        transition: max-height 0.5s ease-in;
+    }
+
+    /* Общие стили для таблиц */
+    table {
+      font-family: 'Comic Sans MS';
+      color:#ffffff;
+      width: 100%; /* Изменили ширину таблицы на 100% */
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px;
+      width: 10%;
+      text-align: center;
+    }
+    th:first-child, td:first-child {
+      background-color: #333;
+      color: #fff;
+    }
+    th:first-child, td:first-child {
+      background-color: #333;
+      color: #fff;
+    }
+    td:hover {
+      background-color: indianred;
+      color: #000;
+    }
+    .form {
+      display: flex;
+      justify-content: space-between;
+      text-align: left;
+      height: 20%;
+      color:#ffffff;
+      background-color: rgba(0, 0, 0, 0.85);
+      font-family: 'Comic Sans MS';
+    }
+    .select-container {
+      display: flex;
+      gap: 10px;
+    }
+    .form button {
+      width: 100%;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.75);
+      border: none;
+      color: #fff;
+      transition: background-color 0.3s ease;
+    }
+    .form button:hover {
+      background-color: indianred;
+    }
+    .form select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: rgba(0, 0, 0, 0.75);
+        border: none;
+        color: #fff;
+    }
+        .form button {
+        width: 100%;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.75);
+        border: none;
+        color: #fff;
+        transition: background-color 0.3s ease;
+        margin-bottom: 10px;
+    }
+    </style>
+    <script>
+       // Функция для обработки нажатия на вкладку
+        function toggleTab(tabId) {
+            var tab = document.getElementById(tabId);
+            var tableContainer = document.getElementById(tabId + "-table");
+
+            if (tableContainer.style.maxHeight) {
+                // Вкладка уже открыта, сворачиваем ее
+                tableContainer.style.maxHeight = null;
+                tab.classList.remove("active");
+            } else {
+                // Открываем вкладку и сворачиваем другие
+                var tabs = document.getElementsByClassName("tab");
+                var tableContainers = document.getElementsByClassName("table-container");
+
+                for (var i = 0; i < tabs.length; i++) {
+                    tabs[i].classList.remove("active");
+                    tableContainers[i].style.maxHeight = null;
+                }
+                tableContainer.style.maxHeight = tableContainer.scrollHeight + "px";
+                tab.classList.add("active");
+            }
+        }
+    </script>
+</head>
+<body>
+        <div class="form">
+              <div class="student-name" >Павлов Данила </div>
+              <button onclick="window.location.href = 'http://127.0.0.1:8000';" style="margin: 20px; width: 10%">logout</button>
+        </div>
+            <div class = "container">
+                <div>
+                   <div class="tab" id="tab1" onclick="toggleTab('tab1')">Группа 1</div>
+                   <div class="tab" id="tab2" onclick="toggleTab('tab2')">Группа 2</div>
+                   <div class="tab" id="tab3" onclick="toggleTab('tab3')">Группа 3</div>
+{#                   <div class="tab" id="tab3" onclick="toggleTab('tab3')">Группа 4</div>#}
+{#                   <div class="tab" id="tab1" onclick="toggleTab('tab1')">Группа 5</div>#}
+{#                   <div class="tab" id="tab2" onclick="toggleTab('tab2')">Группа 6</div>#}
+{#                   <div class="tab" id="tab3" onclick="toggleTab('tab3')">Группа 7</div>#}
+{#                   <div class="tab" id="tab3" onclick="toggleTab('tab3')">Группа 8</div>#}
+                </div>
+                    <div class="table-container" id="tab1-table">
+                        <table>
+                          <tr>
+                            <th>Часы</th>
+                            <th>Понедельник</th>
+                            <th>Вторник</th>
+                            <th>Среда</th>
+                            <th>Четверг</th>
+                            <th>Пятница</th>
+                            <th>Суббота</th>
+                          </tr>
+                          <tr>
+                            <td> 8.30 - 10.00 </td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>10.10 - 11.40</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>11.50 - 13.20</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>13.50 - 15.20</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>15.30 - 17.00</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>17.10 - 18.40</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>18.50 - 20.20</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                        </table>
+                    </div>
+                    <div class="table-container" id="tab2-table">
+                                                <table>
+                          <tr>
+                            <th>Часы</th>
+                            <th>Понедельник</th>
+                            <th>Вторник</th>
+                            <th>Среда</th>
+                            <th>Четверг</th>
+                            <th>Пятница</th>
+                            <th>Суббота</th>
+                          </tr>
+                          <tr>
+                            <td> 8.30 - 10.00 </td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>10.10 - 11.40</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>11.50 - 13.20</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>13.50 - 15.20</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>15.30 - 17.00</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>17.10 - 18.40</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>18.50 - 20.20</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                        </table>
+                    </div>
+                    <div class="table-container" id="tab3-table">
+                                                <table>
+                          <tr>
+                            <th>Часы</th>
+                            <th>Понедельник</th>
+                            <th>Вторник</th>
+                            <th>Среда</th>
+                            <th>Четверг</th>
+                            <th>Пятница</th>
+                            <th>Суббота</th>
+                          </tr>
+                          <tr>
+                            <td> 8.30 - 10.00 </td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>10.10 - 11.40</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>11.50 - 13.20</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>13.50 - 15.20</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>15.30 - 17.00</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>17.10 - 18.40</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                          <tr>
+                            <td>18.50 - 20.20</td>
+                            <td> {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                            <td > {{object}} <br> {{room}} <br> {{teacher_name}} </td>
+                          </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+</html>
