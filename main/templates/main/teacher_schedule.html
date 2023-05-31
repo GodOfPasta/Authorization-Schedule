@@ -2,6 +2,7 @@
 <html lang="en" xmlns:font-family="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+
 <title>Расписание</title>
   <style>
     body {
@@ -145,69 +146,266 @@
         <th>Пятница</th>
         <th>Суббота</th>
       </tr>
+      {% for cell in cells %}
+      {% if cell.pair.number  == 0 and cell.student_group.Student_Group_id == XX %}
       <tr>
         <td> 8.30 - 10.00 </td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text">Контрольная по теме пошол нахуй</span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td class="tooltip">
+          {% if cell.day  == 1 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+          <a href="{% url 'event-update' cell.id %}"><button>Кнопка</button></a>
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 2 %}
+          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 3 %}
+          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 4 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 5 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 6 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
       </tr>
+      {% endif %}
+      {% endfor %}
+      {% for cell in cells %}
+      {% if cell.pair.number  == 1 and cell.student_group.Student_Group_id == XX %}
       <tr>
-        <td>10.10 - 11.40</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td> 10.10 - 11.40 </td>
+        <td class="tooltip">
+          {% if cell.day  == 1 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 2 %}
+          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 3 %}
+          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 4 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 5 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 6 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
       </tr>
+      {% endif %}
+      {% endfor %}
+      {% for cell in cells %}
+      {% if cell.pair.number  == 2 and cell.student_group.Student_Group_id == XX %}
       <tr>
-        <td>11.50 - 13.20</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td> 11.50 - 13.20 </td>
+        <td class="tooltip">
+          {% if cell.day  == 1 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 2 %}
+          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 3 %}
+          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 4 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 5 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 6 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
       </tr>
+      {% endif %}
+      {% endfor %}
+      {% for cell in cells %}
+      {% if cell.pair.number  == 3 and cell.student_group.Student_Group_id == XX %}
       <tr>
-        <td>13.50 - 15.20</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td> 13.50 - 15.20 </td>
+        <td class="tooltip">
+          {% if cell.day  == 1 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 2 %}
+          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 3 %}
+          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 4 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 5 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 6 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
       </tr>
+      {% endif %}
+      {% endfor %}
+      {% for cell in cells %}
+      {% if cell.pair.number  == 4 and cell.student_group.Student_Group_id == XX %}
       <tr>
-        <td>15.30 - 17.00</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td> 15.30 - 17.00 </td>
+        <td class="tooltip">
+          {% if cell.day  == 1 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 2 %}
+          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 3 %}
+          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 4 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 5 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 6 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
       </tr>
+      {% endif %}
+      {% endfor %}
+       {% for cell in cells %}
+      {% if cell.pair.number  == 5 and cell.student_group.Student_Group_id == XX %}
       <tr>
-        <td>17.10 - 18.40</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td> 17.10 - 18.40 </td>
+        <td class="tooltip">
+          {% if cell.day  == 1 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 2 %}
+          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 3 %}
+          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 4 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 5 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 6 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
       </tr>
+      {% endif %}
+      {% endfor %}
+       {% for cell in cells %}
+      {% if cell.pair.number  == 6 and cell.student_group.Student_Group_id == XX %}
       <tr>
-        <td>18.50 - 20.20</td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
-        <td class="tooltip"> {{object}} <br> {{room}} <br> {{teacher_name}} <span class="tooltip-text"></span></td>
+        <td> 18.50 - 20.20 </td>
+        <td class="tooltip">
+          {% if cell.day  == 1 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 2 %}
+          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 3 %}
+          {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 4 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 5 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
+        <td class="tooltip">
+          {% if cell.day  == 6 %}
+          {{ cell.pair }} <br>  {{ cell.subject_code }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% endif %}
+        </td>
       </tr>
+      {% endif %}
+      {% endfor %}
     </table>
   </div>
 </div>
