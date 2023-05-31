@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<title> Авторизация NASA</title>
+  <style>
+
+  </style>
+</head>
+<body>
+    <div>
+        <h1>Изменить данные ячейки</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.student_group }}<br>
+            {{ form.subject_code }}<br>
+            {{ form.room }}<br>
+            {{ form.pair }}<br>
+            {{ form.teacher_pk }}<br>
+            {{ form.event }}<br>
+            <span>{{ error }}</span>
+            <button type="submit">Принять</button>
+        </form>>
+    </div>
+    <script>
+    </script>
+</body>
+</html>
