@@ -26,8 +26,14 @@ class EventUpdateView(UpdateView):
     fields = ['event']
 
 
-def admin_table(request):
-    return render(request, 'main/admin_table.html')
+class DataUpdateView(UpdateView):
+    model = Cell
+    template_name = 'main/dataChange.html'
 
-def main_admin(request):
-    return render(request, 'main/main_admin.html')
+    fields = ['day', 'student_group', 'subject_code', 'room', 'pair', 'teacher_pk', 'event']
+
+
+def admin_table(request):
+    cells = Cell.objects.all()
+    context = {'cells': cells}
+    return render(request, 'main/admin_table.html', context)
