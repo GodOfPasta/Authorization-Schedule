@@ -28,7 +28,8 @@ def teacher_schedule(request):
     context = {'cells': cells}
     return render(request, 'main/teacher_schedule.html', context)
 
-
+@login_required
+@user_passes_test(is_admin)
 def event_update(request, pk):
     error = ''
     if request.method == 'POST':
@@ -48,7 +49,8 @@ def event_update(request, pk):
 
     return render(request, 'main/event.html', data)
 
-
+@login_required
+@user_passes_test(is_admin)
 def data_update(request, pk):
     error = ''
     if request.method == 'POST':
@@ -79,7 +81,8 @@ def admin_table(request):
     context = {'cells': cells}
     return render(request, 'main/admin_table.html', context)
 
-
+@login_required
+@user_passes_test(is_admin)
 def data_create(request):
     day = request.GET.get('day')
     pair = request.GET.get('pair')
