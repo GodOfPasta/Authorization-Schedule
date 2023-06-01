@@ -164,11 +164,6 @@
                    <div class="tab" id="tab1" onclick="toggleTab('tab1')">Группа 1</div>
                    <div class="tab" id="tab2" onclick="toggleTab('tab2')">Группа 2</div>
                    <div class="tab" id="tab3" onclick="toggleTab('tab3')">Группа 3</div>
-{#                   <div class="tab" id="tab3" onclick="toggleTab('tab3')">Группа 4</div>#}
-{#                   <div class="tab" id="tab1" onclick="toggleTab('tab1')">Группа 5</div>#}
-{#                   <div class="tab" id="tab2" onclick="toggleTab('tab2')">Группа 6</div>#}
-{#                   <div class="tab" id="tab3" onclick="toggleTab('tab3')">Группа 7</div>#}
-{#                   <div class="tab" id="tab3" onclick="toggleTab('tab3')">Группа 8</div>#}
                 </div>
                     <div class="table-container" id="tab1-table">
                         <table>
@@ -187,7 +182,7 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 0 and cell.day  == 1 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}">{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
+          <a href="{% url 'data-update' cell.id %}" target="_blank" >{% if cell.day %}<button>Кнопка</button> {% endif %}</a>
           {% endif %}
           {% endfor %}
         </td>
