@@ -6,7 +6,7 @@ urlpatterns = [
     path('stud_schedule', views.stud_schedule),
     path('teacher_schedule', views.teacher_schedule, name='cell1-table'),
     path('admin_table', views.admin_table, name='cell2-table'),
-    path('teacher_schedule/<int:pk>', views.EventUpdateView.as_view(), name='event-update'),
-    path('admin_table/<int:pk>', views.DataUpdateView.as_view(), name='data-update')
+    path('teacher_schedule/<int:pk>', views.event_update, name='event-update'),
+    path('admin_table/<int:pk>', views.data_update, name='data-update'),
+    path('admin_table/create', views.data_create, name='data-new')
 ]
-
