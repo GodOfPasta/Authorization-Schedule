@@ -627,12 +627,12 @@
  // Привязываем всплывающее окно к каждому элементу с классом "tooltip"
     var tooltips = document.querySelectorAll('.tooltip');
     tooltips.forEach(function (tooltip) {
-        tooltip.addEventListener('mouseover', function () {
+        tooltip.addeventListener('mouseover', function () {
             var tooltipText = this.querySelector('.tooltip-text');
             tooltipText.style.visibility = 'visible';
             tooltipText.style.opacity = '1';
         });
-        tooltip.addEventListener('mouseout', function () {
+        tooltip.addeventListener('mouseout', function () {
             var tooltipText = this.querySelector('.tooltip-text');
             tooltipText.style.visibility = 'hidden';
             tooltipText.style.opacity = '0';
@@ -646,7 +646,7 @@
 // Добавляем обработчик события клика на ячейку таблицы
 var cells = document.querySelectorAll('.table-container td.tooltip');
 cells.forEach(function (cell) {
-    cell.addEventListener('click', function () {
+    cell.addeventListener('click', function () {
         // Проверяем, есть ли уже открытая форма редактирования
         if (editForm) {
             return; // Если есть, выходим из обработчика клика
@@ -713,7 +713,7 @@ function showEditForm() {
         }
     }
     // Проверка на наличие комментариев и дальнейшую подсветку
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addeventListener("DOMContentLoaded", function() {
         var tds = document.querySelectorAll("td");
 
         tds.forEach(function(td) {
