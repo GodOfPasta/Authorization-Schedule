@@ -78,17 +78,15 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Cell(models.Model):
-    day = models.BigIntegerField(db_column='Day')  # Field name made lowercase.
-    student_group = models.ForeignKey('StudentGroup', models.DO_NOTHING, db_column='Student_Group_id')  # Field name made lowercase.
-    subject_code = models.ForeignKey('Subject', models.DO_NOTHING, db_column='Subject_Code')  # Field name made lowercase.
-    room = models.ForeignKey('Room', models.DO_NOTHING, db_column='Room')  # Field name made lowercase.
-    pair = models.ForeignKey('Pair', models.DO_NOTHING, db_column='Pair')  # Field name made lowercase.
-    teacher_pk = models.ForeignKey('Teacher', models.DO_NOTHING, db_column='Teacher_pk')  # Field name made lowercase.
-    event = models.TextField(db_column='Event', blank=True, null=True)  # Field name made lowercase.
+    day = models.BigIntegerField(db_column='day')  # Field name made lowercase.
+    student_group = models.ForeignKey('StudentGroup', models.DO_NOTHING, db_column='student_group_id')  # Field name made lowercase.
+    subject_code = models.ForeignKey('Subject', models.DO_NOTHING, db_column='subject_code')  # Field name made lowercase.
+    room = models.ForeignKey('room', models.DO_NOTHING, db_column='room')  # Field name made lowercase.
+    pair = models.ForeignKey('pair', models.DO_NOTHING, db_column='pair')  # Field name made lowercase.
+    teacher_pk = models.ForeignKey('Teacher', models.DO_NOTHING, db_column='teacher_pk')  # Field name made lowercase.
+    event = models.TextField(db_column='event', blank=True, null=True)  # Field name made lowercase.
     id = models.BigAutoField(primary_key=True)
 
-    def get_absolute_url(self):
-        return '/teacher_schedule'
 
     class Meta:
         managed = False
@@ -149,7 +147,7 @@ class MainStudent(models.Model):
         db_table = 'main_student'
 
 
-class Pair(models.Model):
+class pair(models.Model):
     number = models.BigIntegerField(primary_key=True)
 
     class Meta:
@@ -157,7 +155,7 @@ class Pair(models.Model):
         db_table = 'pair'
 
 
-class Room(models.Model):
+class room(models.Model):
     id = models.BigIntegerField(primary_key=True)
     name = models.CharField(max_length=20)
 
