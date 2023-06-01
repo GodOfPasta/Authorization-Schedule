@@ -12,6 +12,7 @@
         <h1>Изменить событие</h1>
         <form method="post">
             {% csrf_token %}
+            <input type="hidden" name="id" value="{{ cell.id }}">
             {{ form.event }}<br>
             <span>{{ error }}</span>
             <button type="submit">Принять</button>
