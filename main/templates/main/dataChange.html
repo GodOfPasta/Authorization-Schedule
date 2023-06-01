@@ -4,23 +4,81 @@
     <meta charset="UTF-8">
 <title> Авторизация NASA</title>
   <style>
+    body {
+      background-image: url("https://i.gifer.com/BUhB.gif");
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      overflow-y: scroll;
+      margin: 0;
+    }
+    .main {
+      display: flex;
+      justify-content: space-between;
+      text-align: left;
+      height: 20%;
+      color:#ffffff;
+      background-color: rgba(0, 0, 0, 0.85);
+      font-family: 'Comic Sans MS';
+    }
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: normal;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+    .table-container {
+        display: flex;
+        width: 90%;
+        height: 60%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.25);
+    }
+
+    .main button:hover {
+        background-color: indianred;
+    }
+    .main button {
+        width: 100%;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.75);
+        border: none;
+        color: #fff;
+        transition: background-color 0.3s ease;
+        margin-bottom: 10px;
+    }
+    .student-name {
+        margin: 20px ;
+        text-align: left;
+        color: #ffffff;
+        font-size: xx-large;
+    }
+        /* Стили для таблиц */
 
   </style>
 </head>
 <body>
     <div>
-        <h1>Изменить данные ячейки</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.student_group }}<br>
-            {{ form.subject_code }}<br>
-            {{ form.room }}<br>
-            {{ form.pair }}<br>
-            {{ form.teacher_pk }}<br>
-            {{ form.event }}<br>
-            <span>{{ error }}</span>
-            <button type="submit">Принять</button>
-        </form>>
+        <div class="main">
+        <div class="student-name" >Изменить данные ячейки </div>
+
+        </div>
+        <div class = "container">
+            <div class="table-container">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.student_group }}<br>
+                    {{ form.subject_code }}<br>
+                    {{ form.room }}<br>
+                    {{ form.pair }}<br>
+                    {{ form.teacher_pk }}<br>
+                    {{ form.event }}<br>
+                    <span> {{ error }} </span>
+                    <button type="submit" style="margin: 20px; width: 10%">Apply</button>
+                </form>>
+            </div>
+        </div>
     </div>
     <script>
     </script>
