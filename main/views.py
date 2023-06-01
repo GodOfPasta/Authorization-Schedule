@@ -1,23 +1,28 @@
 from django.db import connection
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django import template
-from .forms import EventForm, CellForm, UpdateForm
+from .forms import EventForm, CellForm, UpdateForm, LoginForm
 from .models import Cell
-from django.views.generic import UpdateView
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required, user_passes_test
 
+def is_admin(user):
+    return user.is_authenticated() and user.role == 'admin'
 
-def index(request):
-    # return render(request, 'main/authorization.html')
-    return redirect("http://127.0.0.1:8000/login/")
+def is_student(user):
+    return user.is_authenticated() and user.role == 'student'
 
+def is_teacher(user):
+    return user.is_authenticated() and user.role == 'teacher'
 
+@login_required
+@user_passes_test(is_student)
 def stud_schedule(request):
     cells = Cell.objects.all()
     context = {'cells': cells}
     return render(request, 'main/stud_schedule.html', context)
 
-
+@login_required
+@user_passes_test(is_teacher)
 def teacher_schedule(request):
     cells = Cell.objects.all()
     context = {'cells': cells}
@@ -67,7 +72,8 @@ def data_update(request, pk):
 
     return render(request, 'main/dataChange.html', data)
 
-
+@login_required
+@user_passes_test(is_admin)
 def admin_table(request):
     cells = Cell.objects.all()
     context = {'cells': cells}
@@ -97,3 +103,29 @@ def data_create(request):
     }
     return render(request, 'main/dataNew.html', data)
 
+def user_login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                if is_admin(user):
+                    return redirect('cell2-table')  # Замените 'admin_site' на URL-шаблон сайта администратора
+                elif is_student(user):
+
+                    return redirect('stud_schedule')  # Замените 'student_site' на URL-шаблон сайта для студентов
+                elif is_teacher(user):
+                    return redirect('cell1-table')  # Замените 'teacher_site' на URL-шаблон сайта для преподавателей
+            else:
+                return render(request, 'main/login.html', {'form': form, 'error_message': 'Invalid login credentials'})
+    else:
+        form = LoginForm()
+    return render(request, 'main/login.html', {'form': form})
+
+
+def user_logout(request):
+    logout(request)
+    return render(request, 'main/login.html')

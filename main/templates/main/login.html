@@ -116,50 +116,17 @@
             </div>
 
             <div class="fade-in block2">
-                <form method="post" action="{% url 'login' %}">
+                     <form method="post" action="{% url 'login' %}">
                     {% csrf_token %}
                     <div class="form">
-                        <h2>Login</h2>
 
-                        <!-- Этот кал выводит ошибку логина -->
-                        <div id="error">
-                            {% if form.errors %}
-                                <p>Your username or password didn't match. Please try again.</p>
-                            {% endif %}
-                            
-                            {% if next %}
-                                {% if user.is_authenticated %}
-                                <p>Your account doesn't have access to this page. To proceed,
-                                please login with an account that has access.</p>
-                                {% else %}
-                                <p>Please login to see this page.</p>
-                                {% endif %}
-                            {% endif %}
-                        </div>
-                        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                         <h2>Login</h2>
+                         {{ form.as_p }}
+                        <button type="submit">Login</button>
 
-                        <label for="loginUsername">Name:</label>
-                        {{ form.username }}
-                        <label for="loginPassword">Password:</label>
-                        {{ form.password }}
 
-                    {# Assumes you setup the password_reset view in your URLconf #}
-                    <p><a href="{% url 'password_reset' %}">Forgot password?</a></p>
-
-                    <input type="submit" id="button" value="Submit" />
-                    <input type="hidden" name="next" value="{{ next }}" />
                     </div>
                 </form>
-
-                <!-- <div class="form">
-                    <button onclick="submit()" style="color:#ffffff; font-family: 'Comic Sans MS';">Submit</button>
-                </div>
-                <div class="form">
-                    <button onclick="window.location.href = 'http://127.0.0.1:8000/teacher_schedule';" style="color:#ffffff; font-family: 'Comic Sans MS';">teacher_schedule</button>
-                </div>
-                <div class="form">
-                    <button onclick="window.location.href = 'http://127.0.0.1:8000/admin_table';" style="color:#ffffff; font-family: 'Comic Sans MS';">admin_table</button>
-                </div> -->
 
             </div>
         </div>

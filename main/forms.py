@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput
+from django.forms import ModelForm, TextInput, Form, CharField, PasswordInput
 from .models import Cell
 
 
@@ -25,3 +25,8 @@ class UpdateForm(ModelForm):
     class Meta:
         model = Cell
         fields = ['day', 'student_group', 'subject_code', 'room', 'pair', 'teacher_pk', 'event']
+
+
+class LoginForm(Form):
+    username = CharField(label='Username')
+    password = CharField(label='Password', widget=PasswordInput)

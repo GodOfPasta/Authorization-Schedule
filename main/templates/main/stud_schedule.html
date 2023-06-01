@@ -125,8 +125,8 @@
 </head>
 <body>
 <div class="form">
-  <div class="student-name" href = "http://127.0.0.1:8000" id = "name"></div>
-    <button onclick="window.location.href = 'http://127.0.0.1:8000';" style="margin: 20px; width: 10%">logout</button>
+  <div class="student-name">{{ request.user.username }}</div>
+    <a href="{% url 'logout' %}">Logout</a>
 </div>
   <div class="container">
   <div class="table-container">
