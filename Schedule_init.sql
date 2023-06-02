@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS public.schedule_user
     login character varying COLLATE pg_catalog."default" NOT NULL,
     password character varying COLLATE pg_catalog."default" NOT NULL,
     role character varying COLLATE pg_catalog."default" NOT NULL,
+    last_login timestamp with time zone DEFAULT NOW(),
     CONSTRAINT "Schedule_User_pkey" PRIMARY KEY (id)
 )
 
