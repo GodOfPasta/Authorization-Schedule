@@ -1,7 +1,7 @@
 from django.db import connection
 from django.shortcuts import render, redirect
 from .forms import EventForm, CellForm, UpdateForm, LoginForm
-from .models import Cell
+from .models import Cell, Student
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 
@@ -118,8 +118,13 @@ def user_login(request):
                 if is_admin(user):
                     return redirect('cell2-table')  # Замените 'admin_site' на URL-шаблон сайта администратора
                 elif is_student(user):
-
-                    return redirect('stud_schedule')  # Замените 'student_site' на URL-шаблон сайта для студентов
+                    #Смотри сюда, Володя. Чтобы взять student_group ты можешь взять объект student, т.к руслан все таки сделал связь. Пример такой реализации указан снизу. И да, соси хуй, уеба
+                    student = Student.objects.get(student=user)
+                    name = student.name
+                    context = {
+                        'name': name
+                    }
+                    return render(request, 'main/stud_schedule.html', context)  # Замените 'student_site' на URL-шаблон сайта для студентов
                 elif is_teacher(user):
                     return redirect('cell1-table')  # Замените 'teacher_site' на URL-шаблон сайта для преподавателей
             else:
