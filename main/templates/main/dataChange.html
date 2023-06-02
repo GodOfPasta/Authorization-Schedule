@@ -36,18 +36,18 @@
         background-color: rgba(0, 0, 0, 0.25);
     }
 
-    .main button:hover {
-        background-color: indianred;
+    .form button {
+      width: 100%;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.75);
+      border: none;
+      color: #fff;
+      transition: background-color 0.3s ease;
     }
-    .main button {
-        width: 100%;
-        padding: 10px;
-        background-color: rgba(0, 0, 0, 0.75);
-        border: none;
-        color: #fff;
-        transition: background-color 0.3s ease;
-        margin-bottom: 10px;
+    .form button:hover {
+      background-color: indianred;
     }
+
     .student-name {
         margin: 20px ;
         text-align: left;
@@ -55,7 +55,18 @@
         font-size: xx-large;
     }
         /* Стили для таблиц */
+     .buttonapply {                      /* параметры кнопки в form */
+        width: 100%;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.75);
+        border: none;
+        color: #fff;
+        transition: background-color 0.3s ease;
+    }
 
+    .buttonapply:hover {                /* Изменение цвета при наведении на кнопку */
+        background-color: indianred;
+    }
   </style>
 </head>
 <body>
@@ -75,7 +86,7 @@
                     {{ form.teacher_pk }}<br>
                     {{ form.event }}<br>
                     <span> {{ error }} </span>
-                    <button type="submit" style="margin: 20px; width: 10%">Apply</button>
+                    <button type="submit" class="buttonapply">Apply</button>
                 </form>>
             </div>
         </div>
