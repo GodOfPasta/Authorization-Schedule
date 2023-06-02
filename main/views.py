@@ -118,15 +118,10 @@ def user_login(request):
                 if is_admin(user):
                     return redirect('cell2-table') 
                 elif is_student(user):
-                    #Смотри сюда, Володя. Чтобы взять student_group ты можешь взять объект student, т.к руслан все таки сделал связь. Пример такой реализации указан снизу. И да, соси хуй, уеба
                     student = Student.objects.get(student=user)
-                    group = student.student_group
-                    name = student.name
-                    context = {
-                        'group' : group,
-                        'name': name
-                    }
-                    return render(request, 'main/stud_schedule.html', context) 
+                    request.session['name'] = student.name
+                    request.session['student_group'] = student.student_group.id
+                    return redirect('stud_schedule')
                 elif is_teacher(user):
                     teacher = Teacher.objects.get(teacher=user)
                     request.session['name'] = teacher.name
