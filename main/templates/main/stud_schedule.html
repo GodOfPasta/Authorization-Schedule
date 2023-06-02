@@ -126,7 +126,7 @@
 <body>
 <div class="form">
   <div class="student-name">{{ request.session.name }}</div>
-    <a href="{% url 'logout' %}" style="margin: 20px"> <button > Logout </button> </a>
+  <button onclick="window.location.href = 'http://127.0.0.1:8000';" style="margin: 20px; width: 10%">logout</button>
 </div>
   <div class="container">
   <div class="table-container">
@@ -146,7 +146,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 0 and cell.day  == 1 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -154,7 +154,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 0 and cell.day  == 2 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -162,7 +162,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 0 and cell.day  == 3 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -170,7 +170,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 0 and cell.day  == 4 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -178,7 +178,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 0 and cell.day  == 5 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -186,7 +186,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 0 and cell.day  == 6 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
            {% endif %}
           {% endfor %}
         </td>
@@ -196,14 +196,14 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 1 and cell.day  == 1 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 1 and cell.day  == 2 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -211,7 +211,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 1 and cell.day  == 3 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -219,7 +219,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 1 and cell.day  == 4 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -227,7 +227,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 1 and cell.day  == 5 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -235,7 +235,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 1 and cell.day  == 6 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
            {% endif %}
           {% endfor %}
         </td>
@@ -245,14 +245,14 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 2 and cell.day  == 1 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 2 and cell.day  == 2 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -260,7 +260,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 2 and cell.day  == 3 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -268,7 +268,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 2 and cell.day  == 4 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -276,7 +276,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 2 and cell.day  == 5 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -284,7 +284,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 2 and cell.day  == 6 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
            {% endif %}
           {% endfor %}
         </td>
@@ -294,14 +294,14 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 3 and cell.day  == 1 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 3 and cell.day  == 2 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -309,7 +309,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 3 and cell.day  == 3 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -317,7 +317,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 3 and cell.day  == 4 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -325,7 +325,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 3 and cell.day  == 5 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -333,7 +333,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 3 and cell.day  == 6 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
            {% endif %}
           {% endfor %}
         </td>
@@ -343,14 +343,14 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 4 and cell.day  == 1 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 4 and cell.day  == 2 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -358,7 +358,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 4 and cell.day  == 3 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -366,7 +366,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 4 and cell.day  == 4 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -374,7 +374,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 4 and cell.day  == 5 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -382,7 +382,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 4 and cell.day  == 6 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
            {% endif %}
           {% endfor %}
         </td>
@@ -392,14 +392,14 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 5 and cell.day  == 1 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 5 and cell.day  == 2 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -407,7 +407,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 5 and cell.day  == 3 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -415,7 +415,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 5 and cell.day  == 4 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -423,7 +423,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 5 and cell.day  == 5 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -431,7 +431,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 5 and cell.day  == 6 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
            {% endif %}
           {% endfor %}
         </td>
@@ -441,14 +441,14 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 6 and cell.day  == 1 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 6 and cell.day  == 2 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -456,7 +456,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 6 and cell.day  == 3 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -464,7 +464,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 6 and cell.day  == 4 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -472,7 +472,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 6 and cell.day  == 5 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
           {% endfor %}
         </td>
@@ -480,7 +480,7 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 6 and cell.day  == 6 and cell.student_group.id  == request.session.student_group %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
            {% endif %}
           {% endfor %}
         </td>
@@ -513,8 +513,6 @@
             td.classList.add("highlight");
           }
         });
-        var login = localStorage.getItem("userLogin");
-        document.getElementById("name").textContent = login;
     });
 
 </script>
