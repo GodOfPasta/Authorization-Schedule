@@ -145,22 +145,11 @@
 
         <td class="tooltip">
           {% for cell in cells %}
-
           {% if cell.pair.number  == 0 and cell.day  == 1 and cell.student_group.id  == request.session.student_group %}
           {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           {% endif %}
-          {% endif %}
           {% endfor %}
         </td>
-
-        <!-- <td class="tooltip">
-          {% for cell in cells %}
-          {% if cell.pair.number == 0 and cell.day == 1 and cell.student_group.id == group.id %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          {% endif %}
-          {% endfor %}
-        </td> -->
-
 
         <td class="tooltip">
           {% for cell in cells %}

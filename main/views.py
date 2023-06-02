@@ -29,7 +29,7 @@ def teacher_schedule(request):
     return render(request, 'main/teacher_schedule.html', context)
 
 @login_required
-@user_passes_test(is_admin)
+@user_passes_test(is_teacher)
 def event_update(request, pk):
     error = ''
     if request.method == 'POST':
