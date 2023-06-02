@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'schedule',
         'USER': 'postgres',
-        'PASSWORD': 'admin', #Не забудьте пароль поменять на свой
+        'PASSWORD': 'vivaPolska', #Не забудьте пароль поменять на свой
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

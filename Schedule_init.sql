@@ -9,8 +9,9 @@ CREATE DATABASE schedule
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
 
-/*schedule_user sequence creating*/
+/*sequences creating*/
 CREATE SEQUENCE Schedule_User_id_seq START WITH 1;
+CREATE SEQUENCE cell_id_seq START WITH 1;
 
 /*schedule_user table creating*/
 CREATE TABLE IF NOT EXISTS public.schedule_user
@@ -239,7 +240,7 @@ CREATE TABLE IF NOT EXISTS public.cell
     "pair" bigint NOT NULL,
     "teacher_pk" bigint NOT NULL,
     "event" text COLLATE pg_catalog."default",
-    id bigint NOT NULL DEFAULT 'nextval('cell_id_seq'::regclass)',
+    id bigint NOT NULL DEFAULT ('cell_id_seq'),
     CONSTRAINT cell_pkey PRIMARY KEY (id),
     CONSTRAINT "pair" FOREIGN KEY ("pair")
         REFERENCES public.pair ("number") MATCH SIMPLE
@@ -272,3 +273,89 @@ TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.cell
     OWNER to postgres;
+
+/*procedure change_event for change event in teacher table*/
+
+-- PROCEDURE: public.change_event(integer, text)
+
+-- DROP PROCEDURE IF EXISTS public.change_event(integer, text);
+
+CREATE OR REPLACE PROCEDURE public.change_event(
+	IN _id integer,
+	IN _event text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+begin
+	update cell set  event = _event
+		where id = _id;
+	if not found then
+		raise exception'There is no event %',
+			_id;
+	end if;
+end;
+
+$BODY$;
+ALTER PROCEDURE public.change_event(integer, text)
+    OWNER TO postgres;
+
+COMMENT ON PROCEDURE public.change_event(integer, text)
+    IS 'Меняет drugs, если это семантически возможно.';
+
+
+/*procedure data_update for change inner content in admin page*/
+
+-- PROCEDURE: public.data_update(bigint, character varying, bigint, bigint, text, bigint)
+
+-- DROP PROCEDURE IF EXISTS public.data_update(bigint, character varying, bigint, bigint, text, bigint);
+
+CREATE OR REPLACE PROCEDURE public.data_update(
+	IN _student_group_id bigint,
+	IN _subject_code character varying,
+	IN _room bigint,
+	IN _teacher_pk bigint,
+	IN _event text,
+	IN _id bigint)
+LANGUAGE 'plpgsql'
+AS $BODY$
+begin
+    update cell set subject_code = _subject_code,
+    room=_room, teacher_pk=_teacher_pk, event = _event 
+    where id = _id;
+end;
+
+$BODY$;
+ALTER PROCEDURE public.data_update(bigint, character varying, bigint, bigint, text, bigint)
+    OWNER TO postgres;
+
+COMMENT ON PROCEDURE public.data_update(bigint, character varying, bigint, bigint, text, bigint)
+    IS 'Меняет drugs, если это семантически возможно.';
+
+    
+/*procedure add_cell for adding cell in admin page*/
+
+-- PROCEDURE: public.add_cell(bigint, bigint, character varying, bigint, bigint, bigint, text)
+
+-- DROP PROCEDURE IF EXISTS public.add_cell(bigint, bigint, character varying, bigint, bigint, bigint, text);
+
+CREATE OR REPLACE PROCEDURE public.add_cell(
+    IN _day bigint,
+    IN _student_group_id bigint,
+    IN _subject_code character varying,
+    IN _room bigint,
+    IN _pair bigint,
+    IN _teacher_pk bigint,
+    IN _event text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+BEGIN
+    INSERT INTO cell(day, student_group_id,subject_code,room,pair,teacher_pk,event) 
+    VALUES(_day , _student_group_id, _subject_code, _room, _pair, _teacher_pk, _event);
+    COMMIT;
+END;
+$BODY$;
+ALTER PROCEDURE public.add_cell(bigint, bigint, character varying, bigint, bigint, bigint, text)
+    OWNER TO postgres;
+
+INSERT INTO public.cell
+  ("day", "student_group_id", "subject_code", "room", "pair", "teacher_pk", "event") 
+  VALUES (1, '12321', 'Б1.О.29', 316, 0, 8, '');

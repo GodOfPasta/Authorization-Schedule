@@ -33,7 +33,7 @@ class Pair(models.Model):
 
 class Room(models.Model):
     id = models.BigIntegerField(primary_key=True)
-    name = models.CharField()
+    name = models.CharField(max_length=10)
 
     class Meta:
         managed = False
@@ -44,9 +44,9 @@ class Room(models.Model):
 
 class ScheduleUser(models.Model):
     id = models.BigAutoField(primary_key=True)
-    username = models.CharField()
-    password = models.CharField()
-    role = models.CharField()
+    username = models.CharField(max_length=20)
+    password = models.CharField(max_length=20)
+    role = models.CharField(max_length=10)
     last_login = models.DateTimeField(blank=True, null=True)
 
     class Meta:
@@ -59,7 +59,7 @@ class ScheduleUser(models.Model):
 
 class Student(models.Model):
     student = models.OneToOneField(ScheduleUser, models.DO_NOTHING, primary_key=True)
-    name = models.CharField()
+    name = models.CharField(max_length=60)
     student_group = models.ForeignKey('StudentGroup', models.DO_NOTHING, db_column='student_group')
 
     class Meta:
@@ -72,7 +72,7 @@ class Student(models.Model):
 
 class StudentGroup(models.Model):
     id = models.BigIntegerField(primary_key=True)
-    name = models.CharField()
+    name = models.CharField(max_length=15)
 
     class Meta:
         managed = False
@@ -82,7 +82,7 @@ class StudentGroup(models.Model):
         return self.name
 
 class Study(models.Model):
-    subject_code = models.CharField()
+    subject_code = models.CharField(max_length=20)
     student_group_id = models.BigIntegerField()
 
     class Meta:
@@ -91,7 +91,7 @@ class Study(models.Model):
 
 
 class Subject(models.Model):
-    code = models.CharField(primary_key=True)
+    code = models.CharField(primary_key=True, max_length=20)
     name = models.TextField()
 
     class Meta:
@@ -113,8 +113,8 @@ class Taught(models.Model):
 
 class Teacher(models.Model):
     teacher = models.OneToOneField(ScheduleUser, models.DO_NOTHING, primary_key=True)
-    name = models.CharField()
-    degree = models.CharField()
+    name = models.CharField(max_length=60)
+    degree = models.CharField(max_length=15)
 
     class Meta:
         managed = False
