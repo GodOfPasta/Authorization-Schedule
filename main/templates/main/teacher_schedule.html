@@ -144,7 +144,7 @@
 </head>
 <body>
 <div class="form">
-  <div class="student-name" href = "http://127.0.0.1:8000" >Павлов Данила </div>
+  <div class="student-name" href = "http://127.0.0.1:8000" >   </div>
     <button onclick="window.location.href = 'http://127.0.0.1:8000';" style="margin: 20px; width: 10%">logout</button>
 </div>
   <div class="container">
@@ -165,8 +165,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 0 %}
           {% if cell.day  == 1 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -174,9 +176,11 @@
         <td class="tooltip">
           {% for cell in cells %}
           {% if cell.pair.number  == 0 %}
-          {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.day  == 2 %} 
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -186,8 +190,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 0 %}
           {% if cell.day  == 3 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -197,8 +203,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 0 %}
           {% if cell.day  == 4 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -208,8 +216,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 0 %}
           {% if cell.day  == 5 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -219,8 +229,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 0 %}
           {% if cell.day  == 6 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
            {% endif %}
           {% endif %}
           {% endfor %}
@@ -232,8 +244,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 1 %}
           {% if cell.day  == 1 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -242,8 +256,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 1 %}
           {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -253,8 +269,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 1 %}
           {% if cell.day  == 3 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -264,8 +282,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 1 %}
           {% if cell.day  == 4 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -275,8 +295,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 1 %}
           {% if cell.day  == 5 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -286,9 +308,11 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 1 %}
           {% if cell.day  == 6 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
-           {% endif %}
+          {% endif %}
+          {% endif %}
           {% endif %}
           {% endfor %}
         </td>
@@ -301,8 +325,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 2 %}
           {% if cell.day  == 1 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -311,8 +337,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 2 %}
           {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -322,8 +350,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 2 %}
           {% if cell.day  == 3 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -333,8 +363,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 2 %}
           {% if cell.day  == 4 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -344,8 +376,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 2 %}
           {% if cell.day  == 5 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -355,8 +389,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 2 %}
           {% if cell.day  == 6 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
            {% endif %}
           {% endif %}
           {% endfor %}
@@ -368,8 +404,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 3 %}
           {% if cell.day  == 1 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -378,8 +416,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 3 %}
           {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -389,8 +429,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 3 %}
           {% if cell.day  == 3 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -400,8 +442,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 3 %}
           {% if cell.day  == 4 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -411,8 +455,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 3 %}
           {% if cell.day  == 5 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -422,8 +468,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 3 %}
           {% if cell.day  == 6 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
            {% endif %}
           {% endif %}
           {% endfor %}
@@ -435,8 +483,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 4 %}
           {% if cell.day  == 1 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -445,8 +495,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 4 %}
           {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -456,8 +508,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 4 %}
           {% if cell.day  == 3 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -467,8 +521,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 4 %}
           {% if cell.day  == 4 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -478,8 +534,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 4 %}
           {% if cell.day  == 5 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -489,8 +547,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 4 %}
           {% if cell.day  == 6 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
            {% endif %}
           {% endif %}
           {% endfor %}
@@ -502,8 +562,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 5 %}
           {% if cell.day  == 1 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -512,8 +574,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 5 %}
           {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -523,8 +587,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 5 %}
           {% if cell.day  == 3 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -534,8 +600,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 5 %}
           {% if cell.day  == 4 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -545,8 +613,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 5 %}
           {% if cell.day  == 5 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -556,8 +626,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 5 %}
           {% if cell.day  == 6 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
            {% endif %}
           {% endif %}
           {% endfor %}
@@ -570,8 +642,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 6 %}
           {% if cell.day  == 1 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -580,8 +654,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 6 %}
           {% if cell.day  == 2 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -591,8 +667,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 6 %}
           {% if cell.day  == 3 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -602,8 +680,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 6 %}
           {% if cell.day  == 4 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -613,8 +693,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 6 %}
           {% if cell.day  == 5 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
           {% endif %}
           {% endif %}
           {% endfor %}
@@ -624,8 +706,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 6 %}
           {% if cell.day  == 6 %}
-          {{ cell.subject_code }} <br>  {{ cell.student_group.id }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
+          {% if cell.teacher_pk.pk == request.session.id %}
+          {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
           <a href="{% url 'event-update' cell.id %}">{% if cell.day %}<button class="buttondt">Событие</button> {% endif %}</a>
+          {% endif %}
            {% endif %}
           {% endif %}
           {% endfor %}
