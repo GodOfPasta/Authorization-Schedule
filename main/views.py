@@ -118,13 +118,10 @@ def user_login(request):
                 if is_admin(user):
                     return redirect('cell2-table')  # Замените 'admin_site' на URL-шаблон сайта администратора
                 elif is_student(user):
-                    #Смотри сюда, Володя. Чтобы взять student_group ты можешь взять объект student, т.к руслан все таки сделал связь. Пример такой реализации указан снизу. И да, соси хуй, уеба
                     student = Student.objects.get(student=user)
-                    name = student.name
-                    context = {
-                        'name': name
-                    }
-                    return render(request, 'main/stud_schedule.html', context)  # Замените 'student_site' на URL-шаблон сайта для студентов
+                    request.session['name'] = student.name
+                    request.session['student_group'] = student.student_group.id
+                    return redirect('stud_schedule')
                 elif is_teacher(user):
                     return redirect('cell1-table')  # Замените 'teacher_site' на URL-шаблон сайта для преподавателей
             else:
