@@ -4,19 +4,74 @@
     <meta charset="UTF-8">
 <title> Авторизация NASA</title>
   <style>
+    body {
+      background-image: url("https://i.gifer.com/BUhB.gif");
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      overflow-y: scroll;
+      margin: 0;
+    }
+    .main {
+      display: flex;
+      justify-content: space-between;
+      text-align: left;
+      height: 20%;
+      color:#ffffff;
+      background-color: rgba(0, 0, 0, 0.85);
+      font-family: 'Comic Sans MS';
+    }
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: normal;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+    .table-container {
+        display: flex;
+        width: 90%;
+        height: 60%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.25);
+    }
 
+    .buttonapply {                      /* параметры кнопки в form */
+        width: 100%;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.75);
+        border: none;
+        color: #fff;
+        transition: background-color 0.3s ease;
+    }
+
+    .buttonapply:hover {                /* Изменение цвета при наведении на кнопку */
+        background-color: indianred;
+    }
+    .student-name {
+        margin: 20px ;
+        text-align: left;
+        color: #ffffff;
+        font-size: xx-large;
+    }
   </style>
 </head>
 <body>
     <div>
-        <h1>Изменить событие</h1>
-        <form method="post">
-            {% csrf_token %}
-            <input type="hidden" name="id" value="{{ cell.id }}">
-            {{ form.event }}<br>
-            <span>{{ error }}</span>
-            <button type="submit">Принять</button>
-        </form>>
+        <div class="main">
+        <div class="student-name" > Подтверждение </div>
+        </div>
+        <div class = "container">
+            <div class="table-container">
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{ cell.id }}">
+                    {{ form.event }}<br>
+                    <span>{{ error }}</span>
+                    <button type="submit" class="buttonapply">Принять</button>
+                </form>>
+            </div>
+        </div>
     </div>
     <script>
     </script>

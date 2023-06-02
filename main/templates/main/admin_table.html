@@ -128,6 +128,18 @@
         transition: background-color 0.3s ease;
         margin-bottom: 10px;
     }
+    .buttondt {                      /* параметры кнопки в form */
+        width: 100%;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.75);
+        border: none;
+        color: #fff;
+        transition: background-color 0.3s ease;
+    }
+
+    .buttondt:hover {                /* Изменение цвета при наведении на кнопку */
+        background-color: indianred;
+    }
     </style>
     <script>
        // Функция для обработки нажатия на вкладку
@@ -164,11 +176,6 @@
                    <div class="tab" id="tab1" onclick="toggleTab('tab1')">12321</div>
                    <div class="tab" id="tab2" onclick="toggleTab('tab2')">22121</div>
                    <div class="tab" id="tab3" onclick="toggleTab('tab3')">Группа 3</div>
-{#                   <div class="tab" id="tab3" onclick="toggleTab('tab3')">Группа 4</div>#}
-{#                   <div class="tab" id="tab1" onclick="toggleTab('tab1')">Группа 5</div>#}
-{#                   <div class="tab" id="tab2" onclick="toggleTab('tab2')">Группа 6</div>#}
-{#                   <div class="tab" id="tab3" onclick="toggleTab('tab3')">Группа 7</div>#}
-{#                   <div class="tab" id="tab3" onclick="toggleTab('tab3')">Группа 8</div>#}
                 </div>
                     <div class="table-container" id="tab1-table">
                         <table>
@@ -187,10 +194,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 0 and cell.day  == 1 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=1&pair=0&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=1&pair=0&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -198,10 +205,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 0 and cell.day  == 2 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=2&pair=0&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=2&pair=0&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -210,10 +217,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 0 and cell.day  == 3 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=3&pair=0&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=3&pair=0&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -222,10 +229,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 0 and cell.day  == 4 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=4&pair=0&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=4&pair=0&student_group=12321" ><button class="buttondt"Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -234,10 +241,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 0 and cell.day  == 5 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=5&pair=0&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=5&pair=0&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -246,10 +253,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 0 and cell.day  == 6 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=6&pair=0&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=6&pair=0&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -260,10 +267,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 1 and cell.day  == 1 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=1&pair=1&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=1&pair=1&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -271,10 +278,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 1 and cell.day  == 2 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=2&pair=1&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=2&pair=1&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -282,10 +289,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 1 and cell.day  == 3 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=3&pair=1&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=3&pair=1&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -293,10 +300,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 1 and cell.day  == 4 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=4&pair=1&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=4&pair=1&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -305,10 +312,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 1 and cell.day  == 5 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=5&pair=1&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=5&pair=1&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -317,10 +324,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 1 and cell.day  == 6 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=6&pair=1&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=6&pair=1&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -333,10 +340,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 2 and cell.day  == 1 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=1&pair=2&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=1&pair=2&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -344,10 +351,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 2 and cell.day  == 2 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=2&pair=2&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=2&pair=2&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -356,10 +363,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 2 and cell.day  == 3 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=3&pair=2&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=3&pair=2&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -368,10 +375,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 2 and cell.day  == 4 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=4&pair=2&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=4&pair=2&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -380,10 +387,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 2 and cell.day  == 5 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=5&pair=2&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=5&pair=2&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -392,10 +399,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 2 and cell.day  == 6 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=6&pair=2&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=6&pair=2&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -406,10 +413,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 3 and cell.day  == 1 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=1&pair=3&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=1&pair=3&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -417,10 +424,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 3 and cell.day  == 2 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=2&pair=3&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=2&pair=3&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -429,10 +436,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 3 and cell.day  == 3 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=3&pair=3&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=3&pair=3&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -441,10 +448,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 3 and cell.day  == 4 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=4&pair=3&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=4&pair=3&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -453,10 +460,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 3 and cell.day  == 5 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=1&pair=5&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=1&pair=5&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -465,10 +472,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 3 and cell.day  == 6 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=6&pair=3&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=6&pair=3&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -479,10 +486,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 4 and cell.day  == 1 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=1&pair=4&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=1&pair=4&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -490,10 +497,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 4 and cell.day  == 2 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=2&pair=4&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=2&pair=4&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -502,10 +509,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 4 and cell.day  == 2 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=2&pair=4&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=2&pair=4&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -514,10 +521,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 4 and cell.day  == 3 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=3&pair=4&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=3&pair=4&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -526,10 +533,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 4 and cell.day  == 4 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=4&pair=4&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=4&pair=4&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -537,10 +544,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 4 and cell.day  == 5 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=5&pair=4&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=5&pair=4&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -551,10 +558,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 5 and cell.day  == 1 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=1&pair=5&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=1&pair=5&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -562,10 +569,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 5 and cell.day  == 2 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=2&pair=5&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=2&pair=5&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -574,10 +581,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 5 and cell.day  == 3 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=3&pair=5&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=3&pair=5&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -586,10 +593,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 5 and cell.day  == 4 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=4&pair=5&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=4&pair=5&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -598,10 +605,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 5 and cell.day  == 5 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=5&pair=5&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=5&pair=5&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -610,10 +617,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 5 and cell.day  == 6 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=6&pair=5&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=6&pair=5&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -625,10 +632,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 6 and cell.day  == 1 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=1&pair=6&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=1&pair=6&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -636,10 +643,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 6 and cell.day  == 2 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=2&pair=6&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=2&pair=6&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -648,10 +655,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 6 and cell.day  == 3 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=3&pair=6&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=3&pair=6&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -660,10 +667,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 6 and cell.day  == 4 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=4&pair=6&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=4&pair=6&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -672,10 +679,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 6 and cell.day  == 5 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=5&pair=6&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=5&pair=6&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
@@ -684,10 +691,10 @@
           {% for cell in cells %}
           {% if cell.pair.number  == 6 and cell.day  == 6 and cell.student_group.id  == 12321 %}
           {{ cell.subject_code }} <br>  {{ cell.student_group }} <br> {{ cell.room }} <br> {{ cell.teacher_pk }} <span class="tooltip-text">{{ cell.event }}</span>
-          <a href="{% url 'data-update' cell.id %}"><button>Изменить</button></a>
+          <a href="{% url 'data-update' cell.id %}"><button class="buttondt">Изменить</button></a>
           {% endif %}
           {% if forloop.counter < 2 %}
-          <a href="{% url 'data-new' %}?day=6&pair=6&student_group=12321" ><button>Добавить</button></a>
+          <a href="{% url 'data-new' %}?day=6&pair=6&student_group=12321" ><button class="buttondt">Добавить</button></a>
           {% endif %}
           {% endfor %}
         </td>
