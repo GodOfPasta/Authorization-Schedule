@@ -17,7 +17,7 @@ CREATE SEQUENCE cell_id_seq START WITH 1;
 CREATE TABLE IF NOT EXISTS public.schedule_user
 (
     id bigint NOT NULL DEFAULT nextval('Schedule_User_id_seq'),
-    login character varying COLLATE pg_catalog."default" NOT NULL,
+    username character varying COLLATE pg_catalog."default" NOT NULL,
     password character varying COLLATE pg_catalog."default" NOT NULL,
     role character varying COLLATE pg_catalog."default" NOT NULL,
     last_login timestamp with time zone DEFAULT NOW(),
@@ -30,18 +30,18 @@ ALTER TABLE IF EXISTS public.schedule_user
     OWNER to postgres;
 
 /*schedule_user table filling*/
-INSERT INTO public.schedule_user (login, password, role) VALUES ('GodOfPasta', 'hf,ckflhj', 'student');
-INSERT INTO public.schedule_user (login, password, role) VALUES ('Andersen', 'cl0r!de_', 'student');
-INSERT INTO public.schedule_user (login, password, role) VALUES ('CkripoK', 'Bl3nder@st', 'student');
-INSERT INTO public.schedule_user (login, password, role) VALUES ('Batrider', 'p!ng00sn@', 'student');
-INSERT INTO public.schedule_user (login, password, role) VALUES ('cringelord', 'Shy_Fly_', 'student');
-INSERT INTO public.schedule_user (login, password, role) VALUES ('notZIO', 'Ubnkth!$**', 'student');
-INSERT INTO public.schedule_user (login, password, role) VALUES ('Zhmil17', 'G0!d@Z07', 'student');
-INSERT INTO public.schedule_user (login, password, role) VALUES ('login', 'password', 'teacher');
-INSERT INTO public.schedule_user (login, password, role) VALUES ('SergeyKrivel', 'y5cnt49x', 'teacher');
-INSERT INTO public.schedule_user (login, password, role) VALUES ('OlegKuzmin', 'gt6s64um', 'teacher');
-INSERT INTO public.schedule_user (login, password, role) VALUES ('FedorovRoman', '4uawr0wl', 'teacher');
-INSERT INTO public.schedule_user (login, password, role) VALUES ('admin', 'dQw4w9WgXcQ', 'admin');
+INSERT INTO public.schedule_user (username, password, role) VALUES ('GodOfPasta', 'hf,ckflhj', 'student');
+INSERT INTO public.schedule_user (username, password, role) VALUES ('Andersen', 'cl0r!de_', 'student');
+INSERT INTO public.schedule_user (username, password, role) VALUES ('CkripoK', 'Bl3nder@st', 'student');
+INSERT INTO public.schedule_user (username, password, role) VALUES ('Batrider', 'p!ng00sn@', 'student');
+INSERT INTO public.schedule_user (username, password, role) VALUES ('cringelord', 'Shy_Fly_', 'student');
+INSERT INTO public.schedule_user (username, password, role) VALUES ('notZIO', 'Ubnkth!$**', 'student');
+INSERT INTO public.schedule_user (username, password, role) VALUES ('Zhmil17', 'G0!d@Z07', 'student');
+INSERT INTO public.schedule_user (username, password, role) VALUES ('login', 'password', 'teacher');
+INSERT INTO public.schedule_user (username, password, role) VALUES ('SergeyKrivel', 'y5cnt49x', 'teacher');
+INSERT INTO public.schedule_user (username, password, role) VALUES ('OlegKuzmin', 'gt6s64um', 'teacher');
+INSERT INTO public.schedule_user (username, password, role) VALUES ('FedorovRoman', '4uawr0wl', 'teacher');
+INSERT INTO public.schedule_user (username, password, role) VALUES ('admin', 'dQw4w9WgXcQ', 'admin');
 
 /*student_group table creating*/
 CREATE TABLE IF NOT EXISTS public.student_group
